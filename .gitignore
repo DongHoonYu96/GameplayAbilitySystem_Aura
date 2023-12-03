@@ -4,15 +4,15 @@
 
 ####################
 
-#*/Build
+Build
 
-*/Binaries
+Binaries
 
-*/DerivedDataCache
+DerivedDataCache
 
-*/Intermediate
+Intermediate
 
-*/Saved
+Saved
 
 ############
 
@@ -29,4 +29,4 @@ Content
 
 #################
 
-*/.vs
+.vs
