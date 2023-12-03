@@ -1355,3 +1355,381 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2023.12.03-09.04.08:029][223]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Assets/Enemies/Goblin/SK_Goblin_Auto2
 [2023.12.03-09.04.08:029][223]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/SK_Goblin_Auto217A3E2B9492C12659A918FBB5BE66317.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Saved/Autosaves/Game/Assets/Enemies/Goblin/SK_Goblin_Auto2.uasset'
 [2023.12.03-09.04.08:029][223]LogFileHelpers: Auto-saving content packages took 0.098
+[2023.12.03-09.45.38:242][694]LogDerivedDataCache: C:/Users/Bisu/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:03.215 and deleted 0 files with total size 0 MiB. Scanned 2050 files in 2036 folders with total size 194 MiB.
+[2023.12.03-09.52.51:309][321]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-09.52.51:346][321]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/StartupMap" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Maps/StartupMap.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2023.12.03-09.52.51:407][321]LogUObjectHash: Compacting FUObjectHashTables data took   1.33ms
+[2023.12.03-09.52.51:418][321]LogSavePackage: Moving output files for package: /Game/Maps/StartupMap
+[2023.12.03-09.52.51:418][321]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/StartupMapE5B544364549D3E03F5B808BA0365C32.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Maps/StartupMap.umap'
+[2023.12.03-09.52.51:430][321]LogFileHelpers: Saving map 'StartupMap' took 0.083
+[2023.12.03-09.52.51:439][321]LogFileHelpers: InternalPromptForCheckoutAndSave took 128 ms (total: 570 ms)
+[2023.12.03-09.52.51:449][321]AssetCheck: New page: Asset Save: StartupMap
+[2023.12.03-09.52.51:449][321]LogContentValidation: Display: Validating /Script/Engine.World /Game/Maps/StartupMap.StartupMap
+[2023.12.03-09.53.00:772][849]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-09.53.00:772][849]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-09.53.00:772][849]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-09.53.13:603][849]LogSlate: Window 'Pick Parent Class' being destroyed
+[2023.12.03-09.53.28:301][342]LogSlate: Window 'Create Animation Blueprint' being destroyed
+[2023.12.03-09.53.28:312][342]LogContentBrowser: Deferred new asset file creation: NewAnimBlueprint
+[2023.12.03-09.53.28:322][342]LogContentBrowser: Creating deferred item: NewAnimBlueprint
+[2023.12.03-09.53.28:340][343]LogContentBrowser: Renaming the item being created (Deferred Item: NewAnimBlueprint).
+[2023.12.03-09.53.36:062][807]LogContentBrowser: Attempting asset rename: NewAnimBlueprint -> ABP_Aura
+[2023.12.03-09.53.36:101][807]LogContentBrowser: End creating deferred item NewAnimBlueprint
+[2023.12.03-09.53.36:733][844]LogAssetEditorSubsystem: Opening Asset editor for AnimBlueprint /Game/Blueprints/Character/Aura/ABP_Aura.ABP_Aura
+[2023.12.03-09.53.36:751][844]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-09.53.36:760][844]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-09.53.36:769][844]LogActorComponent: RegisterComponentWithWorld: (/Engine/Transient.World_27:PersistentLevel.AnimationEditorPreviewActor_0.DebugSkelMeshComponent_0) Already registered. Aborting.
+[2023.12.03-09.53.37:503][844]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-09.53.37:609][844]LogSlate: Took 0.006094 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-BoldCondensed.ttf' (158K)
+[2023.12.03-09.53.37:614][844]LogViewport: Scene viewport resized to 633x603, mode Windowed.
+[2023.12.03-09.54.39:867][502]LogContentBrowser: Verbose: The majority of assets in the view are of type: /Script/Engine.AnimSequence
+[2023.12.03-09.54.42:801][674]LogViewport: Scene viewport resized to 192x192, mode Windowed.
+[2023.12.03-09.54.43:578][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_01...
+[2023.12.03-09.54.43:578][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_02...
+[2023.12.03-09.54.43:579][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_05...
+[2023.12.03-09.54.43:579][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_06...
+[2023.12.03-09.54.43:579][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_07...
+[2023.12.03-09.54.43:579][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_08...
+[2023.12.03-09.54.43:579][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_04...
+[2023.12.03-09.54.43:579][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_03...
+[2023.12.03-09.54.43:579][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_10...
+[2023.12.03-09.54.43:579][716]LogAudioDerivedData: Display: Building compressed audio format BINKA hash BINKA_1000_StreamCache_Ver5027_MEM_65536MaxChnkSize_00483224128 wave SFX_Footsteps_Stone_09...
+[2023.12.03-09.54.43:581][716]LogAnimationCompression: Building Anim DDC data for AnimSequence /Game/Assets/Characters/Aura/Animations/Run.Run
+[2023.12.03-09.54.43:584][716]LogAnimationCompression: Building Anim DDC data for AnimSequence /Game/Assets/Characters/Aura/Animations/Walk.Walk
+[2023.12.03-09.54.43:585][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_01.SFX_Footsteps_Stone_01: 262144
+[2023.12.03-09.54.43:593][716]LogAssetEditorSubsystem: Opening Asset editor for BlendSpace1D /Game/Assets/Characters/Aura/Animations/IdleWalkRun.IdleWalkRun
+[2023.12.03-09.54.43:594][716]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-09.54.43:608][716]LogActorComponent: RegisterComponentWithWorld: (/Engine/Transient.World_29:PersistentLevel.AnimationEditorPreviewActor_0.DebugSkelMeshComponent_0) Already registered. Aborting.
+[2023.12.03-09.54.43:618][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_02.SFX_Footsteps_Stone_02: 262144
+[2023.12.03-09.54.43:619][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_03.SFX_Footsteps_Stone_03: 262144
+[2023.12.03-09.54.43:619][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_04.SFX_Footsteps_Stone_04: 262144
+[2023.12.03-09.54.43:619][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_05.SFX_Footsteps_Stone_05: 262144
+[2023.12.03-09.54.43:620][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_06.SFX_Footsteps_Stone_06: 262144
+[2023.12.03-09.54.43:620][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_07.SFX_Footsteps_Stone_07: 262144
+[2023.12.03-09.54.43:621][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_08.SFX_Footsteps_Stone_08: 262144
+[2023.12.03-09.54.43:622][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_09.SFX_Footsteps_Stone_09: 262144
+[2023.12.03-09.54.43:622][716]LogAudio: Display: Chunk size for SoundWave /Game/Assets/Sounds/FootSteps/wav/SFX_Footsteps_Stone_10.SFX_Footsteps_Stone_10: 262144
+[2023.12.03-09.54.43:800][716]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-09.54.43:938][716]LogViewport: Scene viewport resized to 1520x788, mode Windowed.
+[2023.12.03-09.54.43:951][716]LogContentBrowser: Verbose: The majority of assets in the view are of type: /Script/Engine.AnimSequence
+[2023.12.03-09.54.54:209][320]LogAudioMixer: Warning: Audio Thread Command from InitSource() took 1.350300 milleseconds to execute
+[2023.12.03-09.54.54:735][351]LogAudioMixer: Warning: Audio Thread Command from ReleaseSourceId() took 16.914000 milleseconds to execute
+[2023.12.03-10.00.19:598][583]BlueprintLog: New page: Compile ABP_Aura
+[2023.12.03-10.00.19:730][583]LogUObjectHash: Compacting FUObjectHashTables data took   3.60ms
+[2023.12.03-10.00.20:448][622]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.00.20:496][622]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/Character/Aura/ABP_Aura" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Aura/ABP_Aura.uasset" SILENT=true
+[2023.12.03-10.00.20:527][622]LogSavePackage: Moving output files for package: /Game/Blueprints/Character/Aura/ABP_Aura
+[2023.12.03-10.00.20:527][622]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/ABP_AuraE5D00BB34600784959474FA8E927BD0F.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Aura/ABP_Aura.uasset'
+[2023.12.03-10.00.20:535][622]LogFileHelpers: InternalPromptForCheckoutAndSave took 87 ms (total: 657 ms)
+[2023.12.03-10.00.20:547][622]AssetCheck: New page: Asset Save: ABP_Aura
+[2023.12.03-10.00.20:548][622]LogContentValidation: Display: Validating /Script/Engine.AnimBlueprint /Game/Blueprints/Character/Aura/ABP_Aura.ABP_Aura
+[2023.12.03-10.00.31:278][251]LogSlateStyle: Warning: Missing Resource from 'CoreStyle' Style: 'Unable to find Color 'DefaultForeground'.'
+[2023.12.03-10.00.31:324][251]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.00.31:324][251]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.00.31:324][251]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.00.37:450][614]BlueprintLog: New page: Compile BP_AuraCharacter
+[2023.12.03-10.00.37:586][614]LogUObjectHash: Compacting FUObjectHashTables data took   2.67ms
+[2023.12.03-10.00.38:262][651]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.00.38:312][651]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/Character/Aura/BP_AuraCharacter" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Aura/BP_AuraCharacter.uasset" SILENT=true
+[2023.12.03-10.00.38:325][651]LogSavePackage: Moving output files for package: /Game/Blueprints/Character/Aura/BP_AuraCharacter
+[2023.12.03-10.00.38:325][651]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/BP_AuraCharacter4AD23B5340F416434B7670841C069F71.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Aura/BP_AuraCharacter.uasset'
+[2023.12.03-10.00.38:331][651]LogFileHelpers: InternalPromptForCheckoutAndSave took 69 ms (total: 727 ms)
+[2023.12.03-10.00.38:343][651]AssetCheck: New page: Asset Save: BP_AuraCharacter
+[2023.12.03-10.00.38:343][651]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Blueprints/Character/Aura/BP_AuraCharacter.BP_AuraCharacter
+[2023.12.03-10.01.00:732][987]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.01.00:733][987]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.01.00:733][987]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.01.03:341][139]BlueprintLog: New page: Compile BP_AuraCharacter
+[2023.12.03-10.01.03:480][139]LogUObjectHash: Compacting FUObjectHashTables data took   2.66ms
+[2023.12.03-10.01.03:962][166]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.01.04:011][166]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/Character/Aura/BP_AuraCharacter" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Aura/BP_AuraCharacter.uasset" SILENT=true
+[2023.12.03-10.01.04:014][166]LogSavePackage: Moving output files for package: /Game/Blueprints/Character/Aura/BP_AuraCharacter
+[2023.12.03-10.01.04:015][166]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/BP_AuraCharacter5FBC245F4518F72E8E587589EDEE7F58.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Aura/BP_AuraCharacter.uasset'
+[2023.12.03-10.01.04:021][166]LogFileHelpers: InternalPromptForCheckoutAndSave took 59 ms (total: 787 ms)
+[2023.12.03-10.01.04:033][166]AssetCheck: New page: Asset Save: BP_AuraCharacter
+[2023.12.03-10.01.04:033][166]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Blueprints/Character/Aura/BP_AuraCharacter.BP_AuraCharacter
+[2023.12.03-10.01.19:543][ 81]LogViewport: Scene viewport resized to 1520x1011, mode Windowed.
+[2023.12.03-10.01.37:732][157]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.01.37:771][157]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/StartupMap" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Maps/StartupMap.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2023.12.03-10.01.37:839][157]LogUObjectHash: Compacting FUObjectHashTables data took   3.07ms
+[2023.12.03-10.01.37:849][157]LogSavePackage: Moving output files for package: /Game/Maps/StartupMap
+[2023.12.03-10.01.37:849][157]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/StartupMap249C463441B4809F22441E8671FAFB6D.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Maps/StartupMap.umap'
+[2023.12.03-10.01.37:857][157]LogFileHelpers: Saving map 'StartupMap' took 0.085
+[2023.12.03-10.01.37:865][157]LogFileHelpers: InternalPromptForCheckoutAndSave took 132 ms (total: 919 ms)
+[2023.12.03-10.01.37:875][157]AssetCheck: New page: Asset Save: StartupMap
+[2023.12.03-10.01.37:875][157]LogContentValidation: Display: Validating /Script/Engine.World /Game/Maps/StartupMap.StartupMap
+[2023.12.03-10.02.03:166][ 89]LogSlate: Window 'Create Animation Blueprint' being destroyed
+[2023.12.03-10.02.03:176][ 89]LogContentBrowser: Deferred new asset file creation: NewAnimBlueprint
+[2023.12.03-10.02.03:187][ 89]LogContentBrowser: Creating deferred item: NewAnimBlueprint
+[2023.12.03-10.02.03:203][ 90]LogContentBrowser: Renaming the item being created (Deferred Item: NewAnimBlueprint).
+[2023.12.03-10.02.14:030][729]LogContentBrowser: Attempting asset rename: NewAnimBlueprint -> ABP_Enemy
+[2023.12.03-10.02.14:037][729]LogContentBrowser: End creating deferred item NewAnimBlueprint
+[2023.12.03-10.02.14:700][768]LogAssetEditorSubsystem: Opening Asset editor for AnimBlueprint /Game/Blueprints/Character/ABP_Enemy.ABP_Enemy
+[2023.12.03-10.02.14:700][768]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.02.14:708][768]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.05.30:635][263]BlueprintLog: New page: Compile ABP_Enemy
+[2023.12.03-10.05.30:723][263]LogUObjectHash: Compacting FUObjectHashTables data took   3.47ms
+[2023.12.03-10.05.31:114][285]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.05.31:150][285]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/Character/ABP_Enemy" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/ABP_Enemy.uasset" SILENT=true
+[2023.12.03-10.05.31:161][285]LogSavePackage: Moving output files for package: /Game/Blueprints/Character/ABP_Enemy
+[2023.12.03-10.05.31:161][285]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/ABP_Enemy1FFE29104C8228D3C83451953C124255.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/ABP_Enemy.uasset'
+[2023.12.03-10.05.31:169][285]LogFileHelpers: InternalPromptForCheckoutAndSave took 55 ms (total: 975 ms)
+[2023.12.03-10.05.31:180][285]AssetCheck: New page: Asset Save: ABP_Enemy
+[2023.12.03-10.05.31:180][285]LogContentValidation: Display: Validating /Script/Engine.AnimBlueprint /Game/Blueprints/Character/ABP_Enemy.ABP_Enemy
+[2023.12.03-10.05.58:539][ 65]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.05.58:539][ 65]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.05.58:539][ 65]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.06.06:573][ 65]LogSlate: Window 'Create Animation Blueprint' being destroyed
+[2023.12.03-10.06.06:584][ 65]LogContentBrowser: Deferred new asset file creation: NewAnimBlueprint
+[2023.12.03-10.06.06:596][ 65]LogContentBrowser: Creating deferred item: NewAnimBlueprint
+[2023.12.03-10.06.06:612][ 66]LogContentBrowser: Renaming the item being created (Deferred Item: NewAnimBlueprint).
+[2023.12.03-10.06.13:158][456]LogContentBrowser: Attempting asset rename: NewAnimBlueprint -> ABP_Goblin_Spear
+[2023.12.03-10.06.13:176][456]LogContentBrowser: End creating deferred item NewAnimBlueprint
+[2023.12.03-10.06.15:025][566]LogAssetEditorSubsystem: Opening Asset editor for AnimBlueprint /Game/Blueprints/Character/Goblin_Spear/ABP_Goblin_Spear.ABP_Goblin_Spear
+[2023.12.03-10.06.15:025][566]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.06.15:033][566]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.06.15:101][566]LogActorComponent: RegisterComponentWithWorld: (/Engine/Transient.World_36:PersistentLevel.AnimationEditorPreviewActor_0.DebugSkelMeshComponent_0) Already registered. Aborting.
+[2023.12.03-10.06.15:748][566]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.06.15:890][566]LogViewport: Scene viewport resized to 633x603, mode Windowed.
+[2023.12.03-10.06.49:583][550]LogAnimationCompression: Building Anim DDC data for AnimSequence /Game/Assets/Enemies/Goblin/Animations/Spear/Idle_Spear2.Idle_Spear2
+[2023.12.03-10.06.49:592][550]LogAnimationCompression: Building Anim DDC data for AnimSequence /Game/Assets/Enemies/Goblin/Animations/Spear/Run_Spear_fix.Run_Spear_fix
+[2023.12.03-10.06.58:111][ 60]BlueprintLog: New page: Compile ABP_Goblin_Spear
+[2023.12.03-10.06.58:214][ 60]LogUObjectHash: Compacting FUObjectHashTables data took   2.80ms
+[2023.12.03-10.06.58:809][ 94]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.06.58:865][ 94]LogSavePackage: Moving output files for package: /Game/Blueprints/Character/Goblin_Spear/ABP_Goblin_Spear
+[2023.12.03-10.06.58:865][ 94]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/ABP_Goblin_Spear10E97E704F5F1418BF79DF805E0BD3E2.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Goblin_Spear/ABP_Goblin_Spear.uasset'
+[2023.12.03-10.06.58:872][ 94]LogFileHelpers: InternalPromptForCheckoutAndSave took 62 ms (total: 1.03 sec)
+[2023.12.03-10.06.58:883][ 94]AssetCheck: New page: Asset Save: ABP_Goblin_Spear
+[2023.12.03-10.06.58:883][ 94]LogContentValidation: Display: Validating /Script/Engine.AnimBlueprint /Game/Blueprints/Character/Goblin_Spear/ABP_Goblin_Spear.ABP_Goblin_Spear
+[2023.12.03-10.07.18:896][281]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.07.18:896][281]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.07.18:896][281]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.07.21:829][450]BlueprintLog: New page: Compile BP_Goblin_Spear
+[2023.12.03-10.07.22:026][450]LogUObjectHash: Compacting FUObjectHashTables data took   2.53ms
+[2023.12.03-10.07.22:474][471]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.07.22:526][471]LogSavePackage: Moving output files for package: /Game/Blueprints/Character/Goblin_Spear/BP_Goblin_Spear
+[2023.12.03-10.07.22:526][471]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/BP_Goblin_SpearD3A8D5FD4A8A4704F247119132DB80C0.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Goblin_Spear/BP_Goblin_Spear.uasset'
+[2023.12.03-10.07.22:534][471]LogFileHelpers: InternalPromptForCheckoutAndSave took 59 ms (total: 1.09 sec)
+[2023.12.03-10.07.22:546][471]AssetCheck: New page: Asset Save: BP_Goblin_Spear
+[2023.12.03-10.07.22:546][471]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Blueprints/Character/Goblin_Spear/BP_Goblin_Spear.BP_Goblin_Spear
+[2023.12.03-10.08.50:571][743]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.08.50:619][743]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/StartupMap" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Maps/StartupMap.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2023.12.03-10.08.50:697][743]LogUObjectHash: Compacting FUObjectHashTables data took   3.52ms
+[2023.12.03-10.08.50:707][743]LogSavePackage: Moving output files for package: /Game/Maps/StartupMap
+[2023.12.03-10.08.50:707][743]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/StartupMap01BBB9EA47D7CC32C7338086E14425BD.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Maps/StartupMap.umap'
+[2023.12.03-10.08.50:716][743]LogFileHelpers: Saving map 'StartupMap' took 0.097
+[2023.12.03-10.08.50:724][743]LogFileHelpers: InternalPromptForCheckoutAndSave took 153 ms (total: 1.25 sec)
+[2023.12.03-10.08.50:736][743]AssetCheck: New page: Asset Save: StartupMap
+[2023.12.03-10.08.50:736][743]LogContentValidation: Display: Validating /Script/Engine.World /Game/Maps/StartupMap.StartupMap
+[2023.12.03-10.12.17:072][868]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.12.17:073][868]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.12.17:073][868]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.12.24:812][868]LogSlate: Window 'Create Animation Blueprint' being destroyed
+[2023.12.03-10.12.24:824][868]LogContentBrowser: Deferred new asset file creation: NewAnimBlueprint
+[2023.12.03-10.12.24:836][868]LogContentBrowser: Creating deferred item: NewAnimBlueprint
+[2023.12.03-10.12.24:854][869]LogContentBrowser: Renaming the item being created (Deferred Item: NewAnimBlueprint).
+[2023.12.03-10.12.32:441][325]LogContentBrowser: Attempting asset rename: NewAnimBlueprint -> BP_Goblin_Slingshot
+[2023.12.03-10.12.32:452][325]LogContentBrowser: End creating deferred item NewAnimBlueprint
+[2023.12.03-10.12.32:903][351]LogAssetEditorSubsystem: Opening Asset editor for AnimBlueprint /Game/Blueprints/Character/Goblin_Spear/BP_Goblin_Slingshot.BP_Goblin_Slingshot
+[2023.12.03-10.12.32:903][351]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.12.32:931][351]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.12.32:956][351]LogActorComponent: RegisterComponentWithWorld: (/Engine/Transient.World_40:PersistentLevel.AnimationEditorPreviewActor_0.DebugSkelMeshComponent_0) Already registered. Aborting.
+[2023.12.03-10.12.33:707][351]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.12.33:943][351]LogViewport: Scene viewport resized to 633x603, mode Windowed.
+[2023.12.03-10.13.00:820][947]LogAnimationCompression: Building Anim DDC data for AnimSequence /Game/Assets/Enemies/Goblin/Animations/Slingshot/Idle_Slingshot.Idle_Slingshot
+[2023.12.03-10.13.00:821][947]LogAnimationCompression: Building Anim DDC data for AnimSequence /Game/Assets/Enemies/Goblin/Animations/Slingshot/Running_Slingshot.Running_Slingshot
+[2023.12.03-10.13.02:309][ 35]BlueprintLog: New page: Compile BP_Goblin_Slingshot
+[2023.12.03-10.13.02:425][ 35]LogUObjectHash: Compacting FUObjectHashTables data took   2.93ms
+[2023.12.03-10.13.41:991][255]LogUObjectHash: Compacting FUObjectHashTables data took   2.60ms
+[2023.12.03-10.13.46:286][255]LogSlate: Window 'Delete Assets' being destroyed
+[2023.12.03-10.13.46:494][255]LogWorld: UWorld::CleanupWorld for World_41, bSessionEnded=true, bCleanupResources=true
+[2023.12.03-10.13.46:494][255]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.03-10.13.46:514][255]LogWorld: UWorld::CleanupWorld for World_40, bSessionEnded=true, bCleanupResources=true
+[2023.12.03-10.13.46:514][255]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.03-10.13.46:528][255]LogWorld: UWorld::CleanupWorld for World_39, bSessionEnded=true, bCleanupResources=true
+[2023.12.03-10.13.46:528][255]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.03-10.13.46:576][255]LogUObjectGlobals: Force Deleting 1 Package(s):
+	Asset Name: /Game/Blueprints/Character/Goblin_Spear/BP_Goblin_Slingshot.BP_Goblin_Slingshot
+	Asset Type: AnimBlueprint
+[2023.12.03-10.13.47:661][255]LogUObjectHash: Compacting FUObjectHashTables data took   2.89ms
+[2023.12.03-10.13.47:741][255]LogUObjectHash: Compacting FUObjectHashTables data took   2.80ms
+[2023.12.03-10.13.47:817][255]LogUObjectHash: Compacting FUObjectHashTables data took   1.25ms
+[2023.12.03-10.13.53:573][522]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.13.53:574][522]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.13.53:574][522]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.14.06:128][522]LogSlate: Window 'Pick Parent Class' being destroyed
+[2023.12.03-10.14.06:137][522]LogContentBrowser: Deferred new asset file creation: NewBlueprint
+[2023.12.03-10.14.06:150][522]LogContentBrowser: Creating deferred item: NewBlueprint
+[2023.12.03-10.14.06:166][523]LogContentBrowser: Renaming the item being created (Deferred Item: NewBlueprint).
+[2023.12.03-10.14.13:474][952]LogContentBrowser: Attempting asset rename: NewBlueprint -> BP_Goblin_Slingshot
+[2023.12.03-10.14.13:481][952]LogContentBrowser: End creating deferred item NewBlueprint
+[2023.12.03-10.14.15:193][ 50]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Blueprints/Character/Goblin_Spear/BP_Goblin_Slingshot.BP_Goblin_Slingshot
+[2023.12.03-10.14.15:194][ 50]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.14.15:710][ 50]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Goblin_Slingshot_C /Engine/Transient.World_42:PersistentLevel.BP_Goblin_Slingshot_C_0)
+[2023.12.03-10.14.15:710][ 50]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Goblin_Slingshot_C /Engine/Transient.World_42:PersistentLevel.BP_Goblin_Slingshot_C_0)
+[2023.12.03-10.14.15:710][ 50]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Goblin_Slingshot_C /Engine/Transient.World_42:PersistentLevel.BP_Goblin_Slingshot_C_0)
+[2023.12.03-10.14.15:723][ 50]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Goblin_Slingshot_C /Engine/Transient.World_42:PersistentLevel.BP_Goblin_Slingshot_C_0)
+[2023.12.03-10.14.15:723][ 50]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Goblin_Slingshot_C /Engine/Transient.World_42:PersistentLevel.BP_Goblin_Slingshot_C_0)
+[2023.12.03-10.14.15:723][ 50]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Goblin_Slingshot_C /Engine/Transient.World_42:PersistentLevel.BP_Goblin_Slingshot_C_0)
+[2023.12.03-10.14.15:723][ 50]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Goblin_Slingshot_C /Engine/Transient.World_42:PersistentLevel.BP_Goblin_Slingshot_C_0)
+[2023.12.03-10.14.15:723][ 50]LogViewport: Scene viewport resized to 1520x1013, mode Windowed.
+[2023.12.03-10.15.06:380][ 12]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.15.06:380][ 12]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.15.06:380][ 12]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.15.53:898][248]LogSlate: Window 'Pick Parent Class' being destroyed
+[2023.12.03-10.15.53:907][248]LogContentBrowser: Deferred new asset file creation: NewBlueprint
+[2023.12.03-10.15.53:920][248]LogContentBrowser: Creating deferred item: NewBlueprint
+[2023.12.03-10.15.53:953][250]LogContentBrowser: Renaming the item being created (Deferred Item: NewBlueprint).
+[2023.12.03-10.16.00:018][604]LogContentBrowser: Attempting asset rename: NewBlueprint -> BP_Golbin_Slingshot
+[2023.12.03-10.16.00:024][604]LogContentBrowser: End creating deferred item NewBlueprint
+[2023.12.03-10.16.06:271][945]LogUObjectHash: Compacting FUObjectHashTables data took   3.60ms
+[2023.12.03-10.16.07:040][945]LogSlate: Window 'Delete Assets' being destroyed
+[2023.12.03-10.16.07:194][945]LogWorld: UWorld::CleanupWorld for World_42, bSessionEnded=true, bCleanupResources=true
+[2023.12.03-10.16.07:194][945]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.03-10.16.07:265][945]LogUObjectGlobals: Force Deleting 1 Package(s):
+	Asset Name: /Game/Blueprints/Character/Goblin_Spear/BP_Goblin_Slingshot.BP_Goblin_Slingshot
+	Asset Type: Blueprint
+[2023.12.03-10.16.07:821][945]LogUObjectHash: Compacting FUObjectHashTables data took   2.85ms
+[2023.12.03-10.16.07:960][945]LogUObjectHash: Compacting FUObjectHashTables data took   2.53ms
+[2023.12.03-10.16.08:037][945]LogUObjectHash: Compacting FUObjectHashTables data took   2.75ms
+[2023.12.03-10.16.08:111][945]LogUObjectHash: Compacting FUObjectHashTables data took   1.24ms
+[2023.12.03-10.16.11:308][111]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Blueprints/Character/Goblin_Slingshot/BP_Golbin_Slingshot.BP_Golbin_Slingshot
+[2023.12.03-10.16.11:308][111]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.16.11:824][111]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Golbin_Slingshot_C /Engine/Transient.World_44:PersistentLevel.BP_Golbin_Slingshot_C_0)
+[2023.12.03-10.16.11:824][111]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Golbin_Slingshot_C /Engine/Transient.World_44:PersistentLevel.BP_Golbin_Slingshot_C_0)
+[2023.12.03-10.16.11:824][111]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Golbin_Slingshot_C /Engine/Transient.World_44:PersistentLevel.BP_Golbin_Slingshot_C_0)
+[2023.12.03-10.16.11:869][111]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Golbin_Slingshot_C /Engine/Transient.World_44:PersistentLevel.BP_Golbin_Slingshot_C_0)
+[2023.12.03-10.16.11:869][111]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Golbin_Slingshot_C /Engine/Transient.World_44:PersistentLevel.BP_Golbin_Slingshot_C_0)
+[2023.12.03-10.16.11:869][111]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Golbin_Slingshot_C /Engine/Transient.World_44:PersistentLevel.BP_Golbin_Slingshot_C_0)
+[2023.12.03-10.16.11:869][111]LogSkinnedMeshComp: Warning: GetSocketInfoByName(WeaponHandSocket): No SkeletalMesh for Component(CharacterMesh0) Actor(BP_Golbin_Slingshot_C /Engine/Transient.World_44:PersistentLevel.BP_Golbin_Slingshot_C_0)
+[2023.12.03-10.16.11:869][111]LogViewport: Scene viewport resized to 1520x1013, mode Windowed.
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: ================================================
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Total job queries 203, among them cache hits 30 (14.78%)
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Tracking 170 distinct input hashes that result in 92 distinct outputs (54.12%)
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: RAM used: 1.32 MB (0.00 GB) of 819.20 MB (0.80 GB) budget. Usage: 0.16%
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Shaders Compiled: 43
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Jobs assigned 46, completed 43 (93.48%)
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Average time worker was idle: 609.06 s
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Time job spent in pending queue: average 0.05 s, longest 0.11 s
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Job execution time: average 1.19 s, max 2.22 s
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Job life time (pending + execution): average 1.24 s, max 2.25
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 12.10 s
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Jobs were issued in 46 batches (only local compilation was used), average 1.00 jobs/batch
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Average processing rate: 3.55 jobs/sec
+[2023.12.03-10.17.15:850][888]LogShaderCompilers: Display: Total thread time: 34.90 s
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display: Total thread preprocess time: 2.09 s
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display: Percentage time preprocessing: 5.99%
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display: Effective parallelization: 2.88 (times faster than compiling all shaders on one thread). Compare with number of workers: 8
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy (compiled   13 times, average 0.96 sec, max 1.26 sec, min 0.76 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                 TBasePassVSFNoLightMapPolicy (compiled   13 times, average 0.93 sec, max 1.25 sec, min 0.69 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                                 FLumenCardVS (compiled    7 times, average 0.75 sec, max 0.81 sec, min 0.62 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                                  FHitProxyVS (compiled    1 times, average 0.72 sec, max 0.72 sec, min 0.72 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                          FLumenCardPS<false> (compiled    8 times, average 0.48 sec, max 0.52 sec, min 0.41 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 35.94% of total time (compiled   13 times, average 0.96 sec, max 1.26 sec, min 0.76 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                 TBasePassVSFNoLightMapPolicy - 34.72% of total time (compiled   13 times, average 0.93 sec, max 1.25 sec, min 0.69 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                                 FLumenCardVS - 15.00% of total time (compiled    7 times, average 0.75 sec, max 0.81 sec, min 0.62 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                          FLumenCardPS<false> - 10.93% of total time (compiled    8 times, average 0.48 sec, max 0.52 sec, min 0.41 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display:                                                  FHitProxyVS - 2.06% of total time (compiled    1 times, average 0.72 sec, max 0.72 sec, min 0.72 sec)
+[2023.12.03-10.17.15:851][888]LogShaderCompilers: Display: ================================================
+[2023.12.03-10.17.26:937][372]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.17.26:938][372]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.17.26:938][372]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.17.35:444][372]LogSlate: Window 'Create Animation Blueprint' being destroyed
+[2023.12.03-10.17.35:456][372]LogContentBrowser: Deferred new asset file creation: NewAnimBlueprint
+[2023.12.03-10.17.35:468][372]LogContentBrowser: Creating deferred item: NewAnimBlueprint
+[2023.12.03-10.17.35:484][373]LogContentBrowser: Renaming the item being created (Deferred Item: NewAnimBlueprint).
+[2023.12.03-10.17.42:932][814]LogContentBrowser: Attempting asset rename: NewAnimBlueprint -> ABP_Golbin_Slingshot
+[2023.12.03-10.17.42:947][814]LogContentBrowser: End creating deferred item NewAnimBlueprint
+[2023.12.03-10.17.44:805][924]LogAssetEditorSubsystem: Opening Asset editor for AnimBlueprint /Game/Blueprints/Character/Goblin_Slingshot/ABP_Golbin_Slingshot.ABP_Golbin_Slingshot
+[2023.12.03-10.17.44:806][924]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.17.44:812][924]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.17.44:823][924]LogActorComponent: RegisterComponentWithWorld: (/Engine/Transient.World_48:PersistentLevel.AnimationEditorPreviewActor_0.DebugSkelMeshComponent_0) Already registered. Aborting.
+[2023.12.03-10.17.45:563][924]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.17.45:731][924]LogViewport: Scene viewport resized to 633x603, mode Windowed.
+[2023.12.03-10.18.00:228][752]BlueprintLog: New page: Compile ABP_Golbin_Slingshot
+[2023.12.03-10.18.00:362][752]LogUObjectHash: Compacting FUObjectHashTables data took   2.78ms
+[2023.12.03-10.18.12:339][455]LogEditorClassViewer: Warning: Class /Script/InteractiveToolsFramework.GizmoActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.18.12:339][455]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewGeometryActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.18.12:339][455]LogEditorClassViewer: Warning: Class /Script/ModelingComponents.PreviewMeshActor has parent /Script/InteractiveToolsFramework.InternalToolFrameworkActor, but this parent is not found. The Class will not be shown in ClassViewer.
+[2023.12.03-10.18.16:536][697]BlueprintLog: New page: Compile BP_Golbin_Slingshot
+[2023.12.03-10.18.16:675][697]LogUObjectHash: Compacting FUObjectHashTables data took   2.71ms
+[2023.12.03-10.18.17:280][730]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.18.17:358][730]LogSavePackage: Moving output files for package: /Game/Blueprints/Character/Goblin_Slingshot/BP_Golbin_Slingshot
+[2023.12.03-10.18.17:358][730]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/BP_Golbin_Slingshot32D0F02942192FFB6FD7BB8E985DB4D7.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Goblin_Slingshot/BP_Golbin_Slingshot.uasset'
+[2023.12.03-10.18.17:367][730]LogFileHelpers: InternalPromptForCheckoutAndSave took 86 ms (total: 1.33 sec)
+[2023.12.03-10.18.17:379][730]AssetCheck: New page: Asset Save: BP_Golbin_Slingshot
+[2023.12.03-10.18.17:379][730]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Blueprints/Character/Goblin_Slingshot/BP_Golbin_Slingshot.BP_Golbin_Slingshot
+[2023.12.03-10.18.20:304][887]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.18.20:360][887]LogSavePackage: Moving output files for package: /Game/Blueprints/Character/Goblin_Slingshot/ABP_Golbin_Slingshot
+[2023.12.03-10.18.20:362][887]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/ABP_Golbin_Slingshot12DB2C38402D34E712BF7385ABDF1BF8.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Blueprints/Character/Goblin_Slingshot/ABP_Golbin_Slingshot.uasset'
+[2023.12.03-10.18.20:370][887]LogFileHelpers: InternalPromptForCheckoutAndSave took 66 ms (total: 1.40 sec)
+[2023.12.03-10.18.20:382][887]AssetCheck: New page: Asset Save: ABP_Golbin_Slingshot
+[2023.12.03-10.18.20:382][887]LogContentValidation: Display: Validating /Script/Engine.AnimBlueprint /Game/Blueprints/Character/Goblin_Slingshot/ABP_Golbin_Slingshot.ABP_Golbin_Slingshot
+[2023.12.03-10.19.04:610][508]LogUObjectHash: Compacting FUObjectHashTables data took   7.22ms
+[2023.12.03-10.19.05:757][508]LogSlate: Window 'Save Content' being destroyed
+[2023.12.03-10.19.09:580][703]LogUObjectHash: Compacting FUObjectHashTables data took   3.08ms
+[2023.12.03-10.19.09:584][703]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.03-10.19.09:621][703]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Assets/Characters/Aura/SK_Aura" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Assets/Characters/Aura/SK_Aura.uasset" SILENT=true
+[2023.12.03-10.19.09:623][703]LogSavePackage: Moving output files for package: /Game/Assets/Characters/Aura/SK_Aura
+[2023.12.03-10.19.09:623][703]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/SK_AuraA67C0A1748E7B7F82B9032880E28D80A.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Assets/Characters/Aura/SK_Aura.uasset'
+[2023.12.03-10.19.09:624][703]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Assets/Enemies/Goblin/SK_Goblin" FILE="../../../../Aura_UE_Version_5_1/Aura/Content/Assets/Enemies/Goblin/SK_Goblin.uasset" SILENT=true
+[2023.12.03-10.19.09:625][703]LogSavePackage: Moving output files for package: /Game/Assets/Enemies/Goblin/SK_Goblin
+[2023.12.03-10.19.09:625][703]LogSavePackage: Moving '../../../../Aura_UE_Version_5_1/Aura/Saved/SK_GoblinB01954624446E94550CB1BA71D45307A.tmp' to '../../../../Aura_UE_Version_5_1/Aura/Content/Assets/Enemies/Goblin/SK_Goblin.uasset'
+[2023.12.03-10.19.09:633][703]LogFileHelpers: InternalPromptForCheckoutAndSave took 48 ms (total: 1.45 sec)
+[2023.12.03-10.19.09:646][703]AssetCheck: New page: Asset Save: multiple assets
+[2023.12.03-10.19.09:646][703]LogContentValidation: Display: Validating /Script/Engine.Skeleton /Game/Assets/Characters/Aura/SK_Aura.SK_Aura
+[2023.12.03-10.19.09:646][703]LogContentValidation: Display: Validating /Script/Engine.Skeleton /Game/Assets/Enemies/Goblin/SK_Goblin.SK_Goblin
+[2023.12.03-10.19.15:884][ 76]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2023.12.03-10.19.15:892][ 76]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2023.12.03-10.19.15:892][ 76]PIE: New page: PIE session: StartupMap (2023. 12. 4. 오전 4:19:15)
+[2023.12.03-10.19.15:893][ 76]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_StartupMap
+[2023.12.03-10.19.15:895][ 76]LogPlayLevel: PIE: StaticDuplicateObject took: (0.002710s)
+[2023.12.03-10.19.15:895][ 76]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/StartupMap.StartupMap to /Game/Maps/UEDPIE_0_StartupMap.StartupMap (0.002753s)
+[2023.12.03-10.19.15:895][ 76]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.12.03-10.19.15:896][ 76]LogAIModule: Creating AISystem for world StartupMap
+[2023.12.03-10.19.15:897][ 76]LogPlayLevel: PIE: World Init took: (0.001027s)
+[2023.12.03-10.19.15:984][ 76]LogUObjectHash: Compacting FUObjectHashTables data took   2.76ms
+[2023.12.03-10.19.15:986][ 76]LogAudio: Display: Creating Audio Device:                 Id: 3, Scope: Unique, Realtime: True
+[2023.12.03-10.19.15:986][ 76]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2023.12.03-10.19.15:986][ 76]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2023.12.03-10.19.15:986][ 76]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2023.12.03-10.19.15:986][ 76]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2023.12.03-10.19.15:986][ 76]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2023.12.03-10.19.15:986][ 76]LogAudioMixer: Display: 	Max Channels (voices):				  0
+[2023.12.03-10.19.15:986][ 76]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2023.12.03-10.19.15:986][ 76]LogAudio: Display: AudioDevice MaxSources: 32
+[2023.12.03-10.19.15:987][ 76]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2023.12.03-10.19.15:987][ 76]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2023.12.03-10.19.15:987][ 76]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2023.12.03-10.19.15:997][ 76]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2023.12.03-10.19.16:057][ 76]LogAudioMixer: Display: Using Audio Hardware Device 스피커(Realtek(R) Audio)
+[2023.12.03-10.19.16:057][ 76]LogAudioMixer: Display: Initializing Sound Submixes...
+[2023.12.03-10.19.16:057][ 76]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2023.12.03-10.19.16:057][ 76]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2023.12.03-10.19.16:058][ 76]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=3
+[2023.12.03-10.19.16:058][ 76]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=3
+[2023.12.03-10.19.16:060][ 76]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=3
+[2023.12.03-10.19.16:061][ 76]LogInit: FAudioDevice initialized.
+[2023.12.03-10.19.16:061][ 76]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=3
+[2023.12.03-10.19.16:061][ 76]LogAudio: Display: Audio Device (ID: 3) registered with world 'StartupMap'.
+[2023.12.03-10.19.16:064][ 76]LogLoad: Game class is 'GameModeBase'
+[2023.12.03-10.19.16:066][ 76]LogWorld: Bringing World /Game/Maps/UEDPIE_0_StartupMap.StartupMap up for play (max tick rate 60) at 2023.12.03-19.19.16
+[2023.12.03-10.19.16:067][ 76]LogWorld: Bringing up level for play took: 0.002715
+[2023.12.03-10.19.16:071][ 76]LogOnline: OSS: Created online subsystem instance for: :Context_53
+[2023.12.03-10.19.16:073][ 76]PIE: Server logged in
+[2023.12.03-10.19.16:074][ 76]PIE: Play in editor total start time 0.183 seconds.
+[2023.12.03-10.19.25:451][324]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2023.12.03-10.19.25:451][324]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_StartupMap
+[2023.12.03-10.19.25:451][324]LogWorld: UWorld::CleanupWorld for StartupMap, bSessionEnded=true, bCleanupResources=true
+[2023.12.03-10.19.25:452][324]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.03-10.19.25:461][324]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2023.12.03-10.19.25:473][324]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.03-10.19.25:572][324]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2023.12.03-10.19.25:573][324]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=3
+[2023.12.03-10.19.25:575][324]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=3
+[2023.12.03-10.19.25:593][324]LogUObjectHash: Compacting FUObjectHashTables data took   3.48ms
+[2023.12.03-10.19.25:689][325]LogPlayLevel: Display: Destroying online subsystem :Context_53
