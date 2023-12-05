@@ -4,10 +4,86 @@
 #include "Player/AuraPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true; // 해당 컨트롤러가 네트워크 상에서 복제될 수 있도록 함
+}
+
+void AAuraPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+	CursorTrace();
+}
+void AAuraPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	// 레이캐스트를 통해 마우스 커서 아래에 있는 객체에 대한 충돌 결과를 가져옵니다.
+	// ECC_Visibility 콜리전 채널을 사용하여 가시성이 있는 오브젝트를 대상으로 합니다.
+	// 두 번째 매개변수는 복합 콜리전에 대한 단일 충돌만 반환해야 하는지 여부를 나타냅니다.
+	// CursorHit 변수에 결과가 저장됩니다.
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+
+	// 마우스 커서 아래에 아무것도 막히지 않았다면 함수를 종료합니다.
+	if (!CursorHit.bBlockingHit)
+		return;
+
+	// LastActor를 현재 ThisActor로 설정합니다.
+	// 새로계산 전에 저장목적
+	LastActor = ThisActor;
+	// CursorHit에서 반환된 충돌된 액터를 IEnemyInterface로 캐스팅하여 ThisActor에 할당합니다.
+	// IEnemyInterface를 구현한 액터에 대해서만 작동합니다.
+	//아닌 액터이면 nullptr
+	ThisActor = Cast<IEnemyInterface>(CursorHit.GetActor());
+
+	/**
+	 * Line trace from cursor. There are several scenarios:
+	 *  A. LastActor is null && ThisActor is null
+	 *		- Do nothing
+	 *	B. LastActor is null && ThisActor is valid
+	 *		- Highlight ThisActor
+	 *	C. LastActor is valid && ThisActor is null
+	 *		- UnHighlight LastActor
+	 *	D. Both actors are valid, but LastActor != ThisActor
+	 *		- UnHighlight LastActor, and Highlight ThisActor
+	 *	E. Both actors are valid, and are the same actor
+	 *		- Do nothing
+	 */
+
+	if (LastActor == nullptr)
+	{
+		if (ThisActor != nullptr)
+		{
+			// Case B
+			ThisActor->HighlightActor();
+		}
+		else
+		{
+			// Case A - both are null, do nothing
+		}
+	}
+	else // LastActor is valid
+	{
+		if (ThisActor == nullptr)
+		{
+			// Case C
+			LastActor->UnHighlightActor();
+		}
+		else // both actors are valid
+		{
+			if (LastActor != ThisActor)
+			{
+				// Case D
+				LastActor->UnHighlightActor();
+				ThisActor->HighlightActor();
+			}
+			else
+			{
+				// Case E - do nothing
+			}
+		}
+	}
 }
 
 // 게임 시작 시 호출되는 함수
@@ -67,3 +143,5 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
 }
+
+
