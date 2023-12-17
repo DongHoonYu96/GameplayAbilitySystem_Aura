@@ -2,7 +2,10 @@
 // 프로젝트 설정의 Description 페이지에 저작권 고지를 작성합니다.
 
 #include "Character/AuraCharacter.h"
+
+#include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/AuraPlayerState.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -24,4 +27,44 @@ AAuraCharacter::AAuraCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
+}
+
+//사용 예
+//일반적으로 InitAbilityActorInfo는 캐릭터의 BeginPlay 함수나 상태가 변경될 때
+//(예: PossessedBy, OnRep_PlayerState) 호출됩니다. 이렇게 하면 게임이 시작할 때 또는
+//중요한 게임 상태가 변경될 때 능력 시스템이 적절하게 초기화되고 준비됩니다.
+// 캐릭터가 새로운 컨트롤러에 의해 소유되었을 때 호출되는 함수
+void AAuraCharacter::PossessedBy(AController* NewController)
+{
+	// 부모 클래스의 PossessedBy 함수 호출
+	Super::PossessedBy(NewController);
+
+	// 서버에서 능력 시스템 액터 정보를 초기화
+	InitAbilityActorInfo();
+}
+
+// 플레이어 상태가 복제될 때 호출되는 함수
+void AAuraCharacter::OnRep_PlayerState()
+{
+	// 부모 클래스의 OnRep_PlayerState 함수 호출
+	Super::OnRep_PlayerState();
+
+	// 클라이언트에서 능력 시스템 액터 정보를 초기화
+	InitAbilityActorInfo();
+}
+
+// 능력 시스템 액터 정보를 초기화하는 함수
+void AAuraCharacter::InitAbilityActorInfo()
+{
+	// 플레이어 상태를 AAuraPlayerState 타입으로 가져옴
+	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+	// AuraPlayerState가 유효한지 확인
+	check(AuraPlayerState);
+	// AuraPlayerState의 능력 시스템 컴포넌트를 이용하여 액터 정보를 초기화
+	//첫 번째 인자는 능력의 소유자(Owner)를, 두 번째 인자는 능력이 적용될 대상(Actor)
+	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
+	// 이 캐릭터의 AbilitySystemComponent를 AuraPlayerState의 것으로 설정
+	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
+	// 이 캐릭터의 AttributeSet을 AuraPlayerState의 것으로 설정
+	AttributeSet = AuraPlayerState->GetAttributeSet();
 }

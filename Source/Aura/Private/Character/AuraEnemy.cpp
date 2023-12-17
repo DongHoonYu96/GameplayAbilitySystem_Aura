@@ -47,3 +47,11 @@ void AAuraEnemy::UnHighlightActor()
 	GetMesh()->SetRenderCustomDepth(false);
 	Weapon->SetRenderCustomDepth(false);
 }
+
+void AAuraEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	// 능력 시스템 컴포넌트를 초기화합니다.
+	//첫 번째 this는 능력의 소유자(Owner)를, 두 번째 this는 능력이 적용될 대상(Actor)
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}
