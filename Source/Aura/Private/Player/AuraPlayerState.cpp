@@ -16,6 +16,10 @@ AAuraPlayerState::AAuraPlayerState()
 	// AbilitySystemComponent의 네트워크 복제를 활성화합니다.
 	// 이는 멀티플레이어 게임에서 다른 플레이어들과 능력 정보를 동기화하기 위해 필요합니다.
 
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
+	//복제모드설정
+	//Mixed :  일부 효과는 서버에서만 처리하고(중요한능력), 일부는 클라이언트에서(덜중요한능력) 처리
+
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 	// UAuraAttributeSet 타입의 AttributeSet을 기본 하위 객체로 생성합니다.
 	// "AttributeSet"이라는 이름을 가진 이 컴포넌트는 캐릭터의 다양한 속성(예: 체력, 마나, 공격력 등)을 관리합니다.
