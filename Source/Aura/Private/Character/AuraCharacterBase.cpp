@@ -23,6 +23,12 @@ AAuraCharacterBase::AAuraCharacterBase()
 	
 }
 
+//IAbilitySystemInterface 구현 => @Getter 임
+UAbilitySystemComponent* AAuraCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 // Called when the game starts or when spawned
 void AAuraCharacterBase::BeginPlay()
 {
