@@ -2,12 +2,15 @@
 
 
 #include "AbilitySystem/AuraAttributeSet.h"
-
-#include "AbilitySystemComponent.h"
 #include "Net/UnrealNetwork.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
+	//Setter 사용
+	InitHealth(100.f);
+	InitMaxHealth(100.f);
+	InitMana(50.f);
+	InitMaxMana(50.f);
 }
 
 // 네트워크 복제를 위한 속성 설정을 정의하는 함수
