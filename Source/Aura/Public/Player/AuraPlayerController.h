@@ -34,6 +34,6 @@ private:
 	void Move(const FInputActionValue& InputActionValue);
 
 	void CursorTrace();
-	IEnemyInterface* LastActor; //가장최근에 가리킨 적
-	IEnemyInterface* ThisActor; //현재커서위치가 가리키는 적
+	TObjectPtr<IEnemyInterface> LastActor; //가장최근에 가리킨 적
+	TObjectPtr<IEnemyInterface> ThisActor; //현재커서위치가 가리키는 적
 };

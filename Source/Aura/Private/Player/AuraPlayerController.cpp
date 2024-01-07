@@ -95,9 +95,13 @@ void AAuraPlayerController::BeginPlay()
 
 	// Enhanced Input Subsystem을 사용하여 특정 입력 매핑 콘텍스트를 추가하는 부분
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem); // 서브시스템이 유효한지 확인
-	Subsystem->AddMappingContext(AuraContext, 0); // AuraContext를 서브시스템에 추가
-
+	//check(Subsystem); // 서브시스템이 유효한지 확인
+	//Subsystem->AddMappingContext(AuraContext, 0); // AuraContext를 서브시스템에 추가
+	if (Subsystem) //멀티플레이어에서 작동하도록 check 미사용!
+	{
+		Subsystem->AddMappingContext(AuraContext, 0);
+	}
+	
 	// 마우스 커서 관련 설정
 	bShowMouseCursor = true; // 마우스 커서를 화면에 표시
 	DefaultMouseCursor = EMouseCursor::Default; // 기본 마우스 커서를 설정
