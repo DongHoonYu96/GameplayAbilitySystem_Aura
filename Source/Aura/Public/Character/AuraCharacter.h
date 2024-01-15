@@ -20,5 +20,9 @@ public:
 	virtual void OnRep_PlayerState() override;
 private:
 	void InitAbilityActorInfo();
+
+protected:
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void MoveToLocation();
 	
 };

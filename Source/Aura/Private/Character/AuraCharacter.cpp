@@ -4,10 +4,12 @@
 #include "Character/AuraCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "AIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/AuraPlayerController.h"
 #include "Player/AuraPlayerState.h"
 #include "UI/HUD/AuraHUD.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -29,8 +31,6 @@ AAuraCharacter::AAuraCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
-
-	
 }
 
 //사용 예
@@ -79,6 +79,33 @@ void AAuraCharacter::InitAbilityActorInfo()
 		if (AAuraHUD* AuraHUD = Cast<AAuraHUD>(AuraPlayerController->GetHUD()))
 		{
 			AuraHUD->InitOverlay(AuraPlayerController, AuraPlayerState, AbilitySystemComponent, AttributeSet);
+		}
+	}
+}
+
+void AAuraCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAction("RightClick", IE_Pressed, this, &AAuraCharacter::MoveToLocation);
+}
+
+
+void AAuraCharacter::MoveToLocation()
+{
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		FHitResult Hit;
+		PC->GetHitResultUnderCursorByChannel(UEngineTypes::ConvertToTraceType(ECC_Visibility), true, Hit);
+
+		// if (Hit.bBlockingHit)
+		// {
+		// 	// Move the character to the location
+		// 	SetActorLocation(Hit.ImpactPoint);
+		// }
+		if (Hit.bBlockingHit)
+		{
+			// Use AIBlueprintHelperLibrary to command the AI to move to the location
+			UAIBlueprintHelperLibrary::SimpleMoveToLocation(PC, Hit.ImpactPoint);
 		}
 	}
 }

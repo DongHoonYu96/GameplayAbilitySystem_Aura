@@ -52,6 +52,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams&
 		WCParams);
+
+	//속성들 방송하는 함수
+	virtual void BroadcastInitialValues();
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category="WidgetController");

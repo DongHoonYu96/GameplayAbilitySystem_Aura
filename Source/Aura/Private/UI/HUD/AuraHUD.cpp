@@ -35,6 +35,6 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 
 	//위젯에 컨트롤러 set하기
 	OverlayWidget->SetWidgetController(WidgetController);
-
+	WidgetController->BroadcastInitialValues(); //뷰포트추가전에 방송
 	Widget->AddToViewport();
 }
