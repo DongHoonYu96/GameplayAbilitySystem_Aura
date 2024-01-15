@@ -10,6 +10,8 @@
 #include "Player/AuraPlayerState.h"
 #include "UI/HUD/AuraHUD.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -31,6 +33,23 @@ AAuraCharacter::AAuraCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
+
+
+	// Construct the particle system reference path
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> ParticleSystemAsset
+	(TEXT("/Game/FXVarietyPack/Particles/P_ky_aquaStorm.P_ky_aquaStorm"));
+
+	// Check if the asset was found and assign it to LightningEffect
+	if (ParticleSystemAsset.Succeeded())
+	{
+		LightningThunderParticle = ParticleSystemAsset.Object;
+	}
+	else
+	{
+		// Handle the case where the asset was not found
+		UE_LOG(LogTemp, Warning, TEXT("Particle system asset not found!"));
+	}
+	
 }
 
 //사용 예
@@ -87,7 +106,11 @@ void AAuraCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAction("RightClick", IE_Pressed, this, &AAuraCharacter::MoveToLocation);
+
+	// Bind the 'E' key to trigger the lightning strike
+	PlayerInputComponent->BindAction("LightningStrike", IE_Pressed, this, &AAuraCharacter::TriggerLightningStrike);
 }
+
 
 
 void AAuraCharacter::MoveToLocation()
@@ -108,4 +131,23 @@ void AAuraCharacter::MoveToLocation()
 			UAIBlueprintHelperLibrary::SimpleMoveToLocation(PC, Hit.ImpactPoint);
 		}
 	}
+}
+
+void AAuraCharacter::PerformLightningStrike()
+{
+	// Perform the lightning strike logic here
+	// You can spawn a particle effect, apply damage to nearby enemies, and play a sound
+
+	// Example: Spawn a particle effect for lightning
+	if(nullptr==LightningThunderParticle) return;
+	UE_LOG(LogTemp, Log, TEXT("Go"));
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), LightningThunderParticle, GetActorLocation(), FRotator::ZeroRotator, FVector(1.0f));
+
+	// Example: Apply radial damage to nearby enemies
+	UGameplayStatics::ApplyRadialDamage(this, 10.f, GetActorLocation(), 1.f, UDamageType::StaticClass(), TArray<AActor*>(), this, nullptr, true);
+}
+
+void AAuraCharacter::TriggerLightningStrike()
+{
+	PerformLightningStrike();
 }

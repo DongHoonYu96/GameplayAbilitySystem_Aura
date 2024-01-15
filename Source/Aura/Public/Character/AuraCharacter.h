@@ -21,8 +21,18 @@ public:
 private:
 	void InitAbilityActorInfo();
 
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	class UParticleSystem * LightningThunderParticle;
+
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void MoveToLocation();
+	
+	// Function to handle lightning strike and damage nearby enemies
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	void PerformLightningStrike();
+
+	// Input function to trigger lightning strike when 'E' key is pressed
+	void TriggerLightningStrike();
 	
 };
