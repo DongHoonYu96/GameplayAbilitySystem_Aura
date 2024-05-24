@@ -4,6 +4,7 @@
 #include "Player/AuraPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Data/AuraInputConfigData.h"
 #include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
@@ -16,6 +17,9 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 	Super::PlayerTick(DeltaTime);
 	CursorTrace();
 }
+
+
+
 void AAuraPlayerController::CursorTrace()
 {
 	FHitResult CursorHit;
@@ -118,10 +122,13 @@ void AAuraPlayerController::SetupInputComponent()
 	Super::SetupInputComponent(); // 부모 클래스의 SetupInputComponent() 함수 호출
 
 	// InputComponent를 UEnhancedInputComponent 형으로 변환하고 검사합니다.
+	//Get 인핸스드 인풋 컴포넌트
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 
 	// MoveAction이 발생할 때 AAuraPlayerController 클래스의 Move() 함수를 바인딩합니다.
-	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	//옵션 : 트리거(누르고있을때), 컴플리트(눌렀다 뗏을때)
+	//특정키가(에디터IMC에서 설정한) 눌럿을때, Data 목록 중 Move함수를 실행해라.
+	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)

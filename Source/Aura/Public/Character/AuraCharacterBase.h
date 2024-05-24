@@ -7,8 +7,11 @@
 #include "GameFramework/Character.h"
 #include "AuraCharacterBase.generated.h"
 
+
 class UAbilitySystemComponent;
 class UAttributeSet;
+class USkeletalMeshComponent;
+
 
 UCLASS(Abstract) //추상클래스임 
 class AURA_API AAuraCharacterBase : public ACharacter, public IAbilitySystemInterface
@@ -20,10 +23,13 @@ public:
 	AAuraCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const {return AttributeSet;} //@Getter
+
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	
+	
 	UPROPERTY(EditAnywhere,Category="Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
@@ -32,7 +38,7 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet; //속성을 가르키는 포인터
-
+	
 public:	
 	
 };

@@ -3,6 +3,10 @@
 
 #include "Character/AuraCharacterBase.h"
 
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+
 // Sets default values
 AAuraCharacterBase::AAuraCharacterBase()
 {
@@ -20,6 +24,25 @@ AAuraCharacterBase::AAuraCharacterBase()
 	//1. 기본캐릭터 상속받은 BPAura 생성
 	//2. SKM_Aura - HandL에 WeaponHandSocket생성, 무기위치조정
 	//3. BP Aura - Weapon에 staf 매쉬달기
+
+	//여기서하면 고블린에도 카메라가 붙어버림 ㅋㅋㅋㅋ
+	// //springarm 붙이기
+	// SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComponent"));
+	// SpringArmComponent->SetupAttachment(RootComponent);
+	// SpringArmComponent->TargetArmLength = 750.f;
+	//
+	// //카메라를 springarm에 넣기
+	// CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
+	// CameraComponent->SetupAttachment(SpringArmComponent);
+	//
+	// float CharacterHalfHeight = 95.f;
+	// float CharacterRadius = 20.f;
+	//
+	// GetCapsuleComponent()->InitCapsuleSize(CharacterRadius, CharacterHalfHeight);
+	//
+	// FVector PivotPosition(0.f, 0.f, -CharacterHalfHeight);
+	// FRotator PivotRotation(0.f, -90.f, 0.f);
+	// GetMesh()->SetRelativeLocationAndRotation(PivotPosition, PivotRotation);
 	
 }
 
