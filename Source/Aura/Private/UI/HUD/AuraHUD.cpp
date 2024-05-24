@@ -28,7 +28,7 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 	//위젯생성
 	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(),OverlayWidgetClass);
 	OverlayWidget=Cast<UAuraUserWidget>(Widget);
-
+	
 	//컨트롤러생성
 	const FWidgetControllerParams WidgetControllerParams(PC,PS,ASC,AS);
 	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);

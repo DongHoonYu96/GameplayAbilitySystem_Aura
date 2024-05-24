@@ -3,19 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
-#include "AuraGameModeBase.generated.h"
+#include "Engine/GameInstance.h"
+#include "AuraGameInstance.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class AURA_API AAuraGameModeBase : public AGameModeBase
+class AURA_API UAuraGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 
+public:
+
 protected:
-	virtual void BeginPlay() override;
+	virtual void Init() override;
 
 	
 	
