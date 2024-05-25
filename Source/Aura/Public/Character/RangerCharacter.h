@@ -7,6 +7,9 @@
 #include "GameFramework/Character.h"
 #include "RangerCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+
 UENUM(BlueprintType)
 enum EViewMode
 {
@@ -31,6 +34,15 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//카메라는 캐릭터만의 속성임 -> 여기서구현
+	UPROPERTY(EditAnywhere,Category="Input")
+	TObjectPtr<USpringArmComponent> SpringArmComponent;
+
+	//카메라는 캐릭터만의 속성임 -> 여기서구현
+	UPROPERTY(EditAnywhere,Category="Input")
+	TObjectPtr<UCameraComponent> CameraComponent;
+
+	FVector DirectionToMove = FVector::ZeroVector;
 
 public:	
 	// Called every frame

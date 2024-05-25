@@ -4,6 +4,8 @@
 #include "Player/AuraPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "Character/RangerCharacter.h"
 #include "Data/AuraInputConfigData.h"
 #include "Interaction/EnemyInterface.h"
 
@@ -16,6 +18,7 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
 	CursorTrace();
+	
 }
 
 
@@ -129,6 +132,7 @@ void AAuraPlayerController::SetupInputComponent()
 	//옵션 : 트리거(누르고있을때), 컴플리트(눌렀다 뗏을때)
 	//특정키가(에디터IMC에서 설정한) 눌럿을때, Data 목록 중 Move함수를 실행해라.
 	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	EnhancedInputComponent->BindAction(InputActions->RightClickThenMoveThere, ETriggerEvent::Triggered, this, &AAuraPlayerController::RightClickMove);
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
@@ -153,6 +157,24 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
+}
+
+void AAuraPlayerController::RightClickMove(const FInputActionValue& InputActionValue)
+{
+	FHitResult Hit;
+	this->GetHitResultUnderCursorByChannel(UEngineTypes::ConvertToTraceType(ECC_Visibility),true,Hit);
+	APawn* ControlledPawn = GetPawn<APawn>();
+	if(nullptr==ControlledPawn) return ;
+	
+	if(Hit.bBlockingHit)
+	{
+		//To - From == From에서 To로 가는 방향벡터!
+		FVector LookAtTarget = Hit.ImpactPoint;
+		FVector ToTarget = LookAtTarget - ControlledPawn->GetActorLocation();
+		ControlledPawn->AddMovementInput(ToTarget);
+		
+	}
+
 }
 
 

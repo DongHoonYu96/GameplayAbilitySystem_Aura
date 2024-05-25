@@ -40,13 +40,13 @@ private:
 	//UPROPERTY(EditAnywhere,Category="Input")
 	//TObjectPtr<UInputAction> MoveAction;
 	void Move(const FInputActionValue& InputActionValue);
+	void RightClickMove(const FInputActionValue& InputActionValue);
 	
 
 	//인풋들을 Data들로 관리하기위함(점프,큐,스킬 등..)
 	//BP > MoveActions에 박아주면 됨.
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UAuraInputConfigData> InputActions;
-	
 	
 
 	void CursorTrace();

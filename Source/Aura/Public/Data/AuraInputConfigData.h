@@ -21,7 +21,7 @@ public:
 	//UInputAction* InputAction; 사용하지말것!
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TObjectPtr<UInputAction> InputAction2;
+	TObjectPtr<UInputAction> RightClickThenMoveThere;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UInputAction> InputAction3;
