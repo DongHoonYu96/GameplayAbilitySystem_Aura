@@ -51,6 +51,18 @@ public:
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxMana);
 	//Getter,Setter 자동생성해주는 매크로
 
+	// 최대 마나 속성, 네트워크 복제됨, 변경 시 OnRep_MaxMana 함수 호출
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxIdentity, Category = "Vital Attributes")
+	FGameplayAttributeData MaxIdentity;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxIdentity);
+	//Getter,Setter 자동생성해주는 매크로
+
+	// 최대 마나 속성, 네트워크 복제됨, 변경 시 OnRep_MaxMana 함수 호출
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Identity, Category = "Vital Attributes")
+	FGameplayAttributeData Identity;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Identity);
+	//Getter,Setter 자동생성해주는 매크로
+
 	// 체력이 변경될 때 호출되는 함수
 	UFUNCTION()
 	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
@@ -66,5 +78,13 @@ public:
 	// 최대 마나가 변경될 때 호출되는 함수
 	UFUNCTION()
 	void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
+	
+	// 최대 아덴이 변경될 때 호출되는 함수
+	UFUNCTION()
+	void OnRep_MaxIdentity(const FGameplayAttributeData& OldMaxIdentity) const;
+
+	// 최대 아덴이 변경될 때 호출되는 함수
+	UFUNCTION()
+	void OnRep_Identity(const FGameplayAttributeData& OldIdentity) const;
 
 };
