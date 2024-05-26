@@ -6,6 +6,8 @@
 #include "Character/AuraCharacterBase.h"
 #include "AuraCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
 /**
  * 
  */
@@ -27,12 +29,13 @@ private:
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void MoveToLocation();
-	
-	// Function to handle lightning strike and damage nearby enemies
-	UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	void PerformLightningStrike();
 
-	// Input function to trigger lightning strike when 'E' key is pressed
-	void TriggerLightningStrike();
+	//카메라는 캐릭터만의 속성임 -> 여기서구현
+	UPROPERTY(EditAnywhere,Category="Input")
+	TObjectPtr<USpringArmComponent> SpringArmComponent;
+
+	//카메라는 캐릭터만의 속성임 -> 여기서구현
+	UPROPERTY(EditAnywhere,Category="Input")
+	TObjectPtr<UCameraComponent> CameraComponent;
 	
 };

@@ -10,45 +10,56 @@
 #include "Player/AuraPlayerState.h"
 #include "UI/HUD/AuraHUD.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
 AAuraCharacter::AAuraCharacter()
 {
-	// 캐릭터의 움직임에 관련된 속성을 설정합니다.
-
-	// 캐릭터가 움직임에 따라 회전하여 이동 방향을 바라보도록 설정합니다.
-	GetCharacterMovement()->bOrientRotationToMovement = true;
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
 
 	// 캐릭터가 회전하는 비율을 설정합니다 (Yaw 축).
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 360.f, 0.f);
 
 	// 캐릭터의 움직임을 평면에 제한하여 Z축으로의 움직임을 막습니다.
 	GetCharacterMovement()->bConstrainToPlane = true;
 
 	// 시작 시 캐릭터를 이동 평면에 정렬합니다.
 	GetCharacterMovement()->bSnapToPlaneAtStart = true;
+	
+	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComponent"));
+	SpringArmComponent->SetupAttachment(RootComponent);
+	//카메라를 springarm에 넣기
+	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
+	CameraComponent->SetupAttachment(SpringArmComponent);
+	
+	SpringArmComponent->TargetArmLength = 800.f;
+	SpringArmComponent->SetRelativeRotation(FRotator(-45.f, 0.f, 0.f));
+
 
 	// 컨트롤러 기반 회전을 비활성화합니다 (Pitch, Roll, Yaw 축).
 	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = false; //캐릭터는 컨트롤러의 요를 따라간다.
 	bUseControllerRotationRoll = false;
-	bUseControllerRotationYaw = false;
 
+	
+	
+	SpringArmComponent->bUsePawnControlRotation = false;
+		
+	SpringArmComponent->bInheritPitch = false;
+	SpringArmComponent->bInheritYaw = false; //카메라는 플레이어의 요를 안따른다.
+	SpringArmComponent->bInheritRoll = false;
+		
+	SpringArmComponent->bDoCollisionTest = false;
 
-	// Construct the particle system reference path
-	static ConstructorHelpers::FObjectFinder<UParticleSystem> ParticleSystemAsset
-	(TEXT("/Game/FXVarietyPack/Particles/P_ky_aquaStorm.P_ky_aquaStorm"));
+	
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 360.f, 0.f);
+	GetCharacterMovement()->bOrientRotationToMovement = false;
+	GetCharacterMovement()->bUseControllerDesiredRotation = true; //의지대로 부드럽게 회전함.
 
-	// Check if the asset was found and assign it to LightningEffect
-	if (ParticleSystemAsset.Succeeded())
-	{
-		LightningThunderParticle = ParticleSystemAsset.Object;
-	}
-	else
-	{
-		// Handle the case where the asset was not found
-		UE_LOG(LogTemp, Warning, TEXT("Particle system asset not found!"));
-	}
+	GetCharacterMovement()->bOrientRotationToMovement=true; // 캐릭방향으로 자동회전!
 	
 }
 
@@ -63,6 +74,7 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 	Super::PossessedBy(NewController);
 
 	// 서버에서 능력 시스템 액터 정보를 초기화
+	//init ability actor info for server
 	InitAbilityActorInfo();
 }
 
@@ -73,6 +85,7 @@ void AAuraCharacter::OnRep_PlayerState()
 	Super::OnRep_PlayerState();
 
 	// 클라이언트에서 능력 시스템 액터 정보를 초기화
+	//init ability actor info for client
 	InitAbilityActorInfo();
 }
 
@@ -107,8 +120,7 @@ void AAuraCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAction("RightClick", IE_Pressed, this, &AAuraCharacter::MoveToLocation);
 
-	// Bind the 'E' key to trigger the lightning strike
-	PlayerInputComponent->BindAction("LightningStrike", IE_Pressed, this, &AAuraCharacter::TriggerLightningStrike);
+	
 }
 
 
@@ -133,21 +145,4 @@ void AAuraCharacter::MoveToLocation()
 	}
 }
 
-void AAuraCharacter::PerformLightningStrike()
-{
-	// Perform the lightning strike logic here
-	// You can spawn a particle effect, apply damage to nearby enemies, and play a sound
 
-	// Example: Spawn a particle effect for lightning
-	if(nullptr==LightningThunderParticle) return;
-	UE_LOG(LogTemp, Log, TEXT("Go"));
-	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), LightningThunderParticle, GetActorLocation(), FRotator::ZeroRotator, FVector(1.0f));
-
-	// Example: Apply radial damage to nearby enemies
-	UGameplayStatics::ApplyRadialDamage(this, 10.f, GetActorLocation(), 1.f, UDamageType::StaticClass(), TArray<AActor*>(), this, nullptr, true);
-}
-
-void AAuraCharacter::TriggerLightningStrike()
-{
-	PerformLightningStrike();
-}
