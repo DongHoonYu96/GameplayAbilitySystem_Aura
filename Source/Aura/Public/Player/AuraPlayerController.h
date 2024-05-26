@@ -50,6 +50,6 @@ private:
 	
 
 	void CursorTrace();
-	TObjectPtr<IEnemyInterface> LastActor; //가장최근에 가리킨 적
-	TObjectPtr<IEnemyInterface> ThisActor; //현재커서위치가 가리키는 적
+	TScriptInterface<IEnemyInterface> LastActor; //가장최근에 가리킨 적
+	TScriptInterface<IEnemyInterface> ThisActor; //현재커서위치가 가리키는 적
 };

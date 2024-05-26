@@ -5,6 +5,7 @@
 
 void UAuraUserWidget::SetWidgetController(UObject* InWidgetController)
 {
+	//의존성 주입 (초기화)
 	WidgetController=InWidgetController;
-	WidgetControllerSet();
+	WidgetControllerSet(); //BP에서 구현한 함수 실행할것임.
 }

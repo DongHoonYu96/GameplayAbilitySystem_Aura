@@ -17,6 +17,7 @@ struct FWidgetControllerParams
 {
 	GENERATED_BODY()
 
+public:
 	FWidgetControllerParams(){}
 	FWidgetControllerParams(APlayerController* PC,
 		APlayerState* PS, UAbilitySystemComponent* ASC,
@@ -24,8 +25,9 @@ struct FWidgetControllerParams
 	PlayerController(PC),PlayerState(PS)
 	,AbilitySystemComponent(ASC),AttributeSet(AS){}
 
+protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite);
-	TObjectPtr<APlayerController> PlayerController=nullptr;
+	TObjectPtr<APlayerController> PlayerController=nullptr; //구조체 멤버변수 초기화해줘야 warning 안뜸
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite);
 	TObjectPtr<APlayerState> PlayerState=nullptr;
@@ -50,8 +52,7 @@ class AURA_API UAuraWidgetController : public UObject
 public:
 	//멤버들 초기화하는 함수
 	UFUNCTION(BlueprintCallable)
-	void SetWidgetControllerParams(const FWidgetControllerParams&
-		WCParams);
+	void SetWidgetControllerParams(const FWidgetControllerParams &WCParams);
 
 	//속성들 방송하는 함수
 	virtual void BroadcastInitialValues();

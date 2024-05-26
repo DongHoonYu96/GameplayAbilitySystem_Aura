@@ -10,6 +10,8 @@ UOverlayWidgetController* AAuraHUD::GetOverlayWidgetController(const FWidgetCont
 	if(OverlayWidgetController == nullptr)
 	{
 		//(연결될클래스 , 생성될타입)
+		//Outer : 생성될 오브젝트를 소유하는 UObject 객체
+		//Class : 생성될 오브젝트의 클래스를 나타내는 UClass 정보
 		OverlayWidgetController=NewObject<UOverlayWidgetController>(this,OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 
@@ -18,14 +20,14 @@ UOverlayWidgetController* AAuraHUD::GetOverlayWidgetController(const FWidgetCont
 	return OverlayWidgetController;
 }
 
-//모든 정보를 볼수있는 함수
+//위젯컨트롤러구성, 위젯 구성, 뷰포트에 추가하는 함수
 void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
 {
-	//실패시 문자열프린트
+	//BP에서 클래스를 안넣어준경우 예외처리, 실패시 문자열프린트
 	checkf(OverlayWidgetClass, TEXT("Overlay Widget Class uninitialized, please fill out BP_AuraHUD"));
 	checkf(OverlayWidgetControllerClass, TEXT("Overlay Widget Controller Class uninitialized, please fill out BP_AuraHUD"));
 
-	//위젯생성
+	//위젯생성 (OevelayWidgetClass는 BP에서 넣어준 구체적 대상이 들어감)
 	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(),OverlayWidgetClass);
 	OverlayWidget=Cast<UAuraUserWidget>(Widget);
 	
