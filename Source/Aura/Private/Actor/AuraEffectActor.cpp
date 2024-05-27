@@ -38,6 +38,7 @@ void AAuraEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActo
 		UAuraAttributeSet* MutableAuraAttributeSet = const_cast<UAuraAttributeSet*>(AuraAttributeSet);
 		// 체력을 증가시키고 이 액터를 파괴
 		MutableAuraAttributeSet->SetHealth(AuraAttributeSet->GetHealth() + 25.f);
+		MutableAuraAttributeSet->SetMana(AuraAttributeSet->GetMana() - 25.f);
 		Destroy();
 	}
 }
