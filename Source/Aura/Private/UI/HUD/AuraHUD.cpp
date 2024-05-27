@@ -14,7 +14,8 @@ UOverlayWidgetController* AAuraHUD::GetOverlayWidgetController(const FWidgetCont
 		//Class : 생성될 오브젝트의 클래스를 나타내는 UClass 정보
 		OverlayWidgetController=NewObject<UOverlayWidgetController>(this,OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
-
+		OverlayWidgetController->BindCallbacksToDependencies();
+		
 		return OverlayWidgetController;
 	}
 	return OverlayWidgetController;

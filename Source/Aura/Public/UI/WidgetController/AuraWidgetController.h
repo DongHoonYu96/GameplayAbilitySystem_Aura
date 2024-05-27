@@ -56,6 +56,8 @@ public:
 
 	//속성들 방송하는 함수
 	virtual void BroadcastInitialValues();
+
+	virtual void BindCallbacksToDependencies();
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category="WidgetController");
