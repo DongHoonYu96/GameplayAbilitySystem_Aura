@@ -25,7 +25,7 @@ public:
 	PlayerController(PC),PlayerState(PS)
 	,AbilitySystemComponent(ASC),AttributeSet(AS){}
 
-protected:
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite);
 	TObjectPtr<APlayerController> PlayerController=nullptr; //구조체 멤버변수 초기화해줘야 warning 안뜸
 	

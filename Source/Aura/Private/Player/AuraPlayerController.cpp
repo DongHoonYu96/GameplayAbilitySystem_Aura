@@ -42,7 +42,13 @@ void AAuraPlayerController::CursorTrace()
 	// CursorHit에서 반환된 충돌된 액터를 IEnemyInterface로 캐스팅하여 ThisActor에 할당합니다.
 	// IEnemyInterface를 구현한 액터에 대해서만 작동합니다.
 	//아닌 액터이면 nullptr
-	ThisActor = Cast<IEnemyInterface>(CursorHit.GetActor());
+	//* interface는 =안됨, setter써야함! *
+	AActor* HitActor = CursorHit.GetActor();
+	if (HitActor && HitActor->Implements<UEnemyInterface>())
+	{
+		ThisActor.SetObject(HitActor);
+		ThisActor.SetInterface(Cast<IEnemyInterface>(HitActor));
+	}
 
 	/**
 	 * Line trace from cursor. There are several scenarios:
