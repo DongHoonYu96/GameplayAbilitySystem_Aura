@@ -34,6 +34,20 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxIdentity, COND_None, REPNOTIFY_Always);
 }
 
+void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
+{
+	Super::PreAttributeChange(Attribute, NewValue);
+
+	if (Attribute == GetHealthAttribute()) //속성이 체력인경우
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth()); //new val을 범위제한함(0~최대체력)
+	}
+	if (Attribute == GetManaAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana());
+	}
+}
+
 // 'Health' 속성이 변경될 때 호출되는 함수
 void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
 {

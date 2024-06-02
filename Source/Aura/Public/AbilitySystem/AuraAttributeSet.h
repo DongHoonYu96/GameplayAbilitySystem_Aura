@@ -27,6 +27,8 @@ public:
 	// 네트워크 복제를 위한 속성 설정 함수
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
+
 	// 체력 속성, 네트워크 복제됨, 변경 시 OnRep_Health 함수 호출
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes")
 	FGameplayAttributeData Health;

@@ -21,7 +21,23 @@ void AAuraEffectActor::BeginPlay()
 
 }
 
+void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass)
+{
+	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	if (TargetASC == nullptr) return;
+	check(GameplayEffectClass);
+	FGameplayEffectContextHandle EffectContextHandle = TargetASC->MakeEffectContext();
+	EffectContextHandle.AddSourceObject(this);
+	const FGameplayEffectSpecHandle EffectSpecHandle = TargetASC->MakeOutgoingSpec(GameplayEffectClass, 1.f, EffectContextHandle);
+	const FActiveGameplayEffectHandle ActiveEffectHandle = TargetASC->ApplyGameplayEffectSpecToSelf(*EffectSpecHandle.Data.Get());
 
+	//GE_BP에서 기간이 무한인지확인
+	const bool bIsInfinite =  EffectSpecHandle.Data.Get()->Def.Get()->DurationPolicy == EGameplayEffectDurationType::Infinite;
+	if (bIsInfinite && InfiniteEffectRemovalPolicy == EEffectRemovalPolicy::RemoveOnEndOverlap) //오타이슈! (Application -> Removal)
+	{
+		ActiveEffectHandles.Add(ActiveEffectHandle, TargetASC); //무한효과를 제거하려면 기록해놔야함!
+	}
+}
 
 
 //정책에 따라 분기
