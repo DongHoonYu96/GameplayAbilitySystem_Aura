@@ -99,7 +99,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	FEffectProperties Props;
 	SetEffectProperties(Data,Props);
 
-	Props.
+
 }
 
 // 'Health' 속성이 변경될 때 호출되는 함수
