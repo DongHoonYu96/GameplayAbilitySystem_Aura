@@ -5,6 +5,7 @@
 
 #include "AbilitySystemComponent.h"
 #include "AIController.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/AuraPlayerController.h"
 #include "Player/AuraPlayerState.h"
@@ -99,6 +100,9 @@ void AAuraCharacter::InitAbilityActorInfo()
 	// AuraPlayerState의 능력 시스템 컴포넌트를 이용하여 액터 정보를 초기화
 	//첫 번째 인자는 능력의 소유자(Owner)를, 두 번째 인자는 능력이 적용될 대상(Actor)
 	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
+
+	Cast<UAuraAbilitySystemComponent>(AuraPlayerState->GetAbilitySystemComponent())->AbilityActorInfoSet();
+	
 	// 이 캐릭터의 AbilitySystemComponent를 AuraPlayerState의 것으로 설정
 	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
 	// 이 캐릭터의 AttributeSet을 AuraPlayerState의 것으로 설정

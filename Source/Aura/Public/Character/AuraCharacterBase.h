@@ -38,6 +38,8 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet; //속성을 가르키는 포인터
+
+	virtual void InitAbilityActorInfo();
 	
 public:	
 	
