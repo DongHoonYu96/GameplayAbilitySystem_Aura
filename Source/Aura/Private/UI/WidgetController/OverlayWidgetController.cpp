@@ -38,11 +38,13 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 		{
 			for (const FGameplayTag& Tag : AssetTags)
 			{
-				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
-				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
-
-				FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
-				//태그별로 데이터 가져오기
+				// * "A.1".MatchesTag("A") will return True, "A".MatchesTag("A.1") will return False
+				if(Tag.MatchesTag(FGameplayTag::RequestGameplayTag(FName("Message")))) //Message로 시작하는 태그인지 검사
+				{
+					//태그별로 데이터 가져오기
+					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+					MessageWidgetRowDelegate.Broadcast(*Row);
+				}
 			}
 		}
 	);
