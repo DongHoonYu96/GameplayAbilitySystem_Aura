@@ -10,11 +10,7 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	//Setter 사용
-	InitHealth(10.f);
-	//InitMaxHealth(100.f);
-	InitMana(10.f);
-	//InitMaxMana(100.f);
+	
 }
 
 // !네트워크에 복제할 속성들을 등록하는 함수! 등록안해주면 빌드에러
