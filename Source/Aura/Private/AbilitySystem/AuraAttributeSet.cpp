@@ -140,11 +140,34 @@ void UAuraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) 
 
 void UAuraAttributeSet::OnRep_MaxIdentity(const FGameplayAttributeData& OldMaxIdentity) const
 {
+	// 'Health' 속성의 변경을 처리
+	// 핵이면, 롤백용으로 OldVal을 알아야함!
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxIdentity, OldMaxIdentity);
 }
 
 void UAuraAttributeSet::OnRep_Identity(const FGameplayAttributeData& OldIdentity) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Identity, OldIdentity);
+}
+
+void UAuraAttributeSet::OnRep_Strength(const FGameplayAttributeData& OldStrength) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Strength, OldStrength);
+}
+
+void UAuraAttributeSet::OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Intelligence, OldIntelligence);
+
+}
+
+void UAuraAttributeSet::OnRep_Resilience(const FGameplayAttributeData& OldResilience) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Resilience, OldResilience);
+}
+
+void UAuraAttributeSet::OnRep_Vigor(const FGameplayAttributeData& OldVigor) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Vigor, OldVigor);
 }
 

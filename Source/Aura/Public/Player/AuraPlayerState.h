@@ -23,7 +23,7 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const {return AttributeSet;} //@Getter
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent; 
 
 	UPROPERTY()
