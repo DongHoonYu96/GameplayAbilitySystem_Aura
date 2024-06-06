@@ -23,6 +23,9 @@ public:
 private:
 	virtual void InitAbilityActorInfo() override;
 
+	/** Combat Interface*/
+	virtual int32 GetPlayerLevel() override;
+
 	UPROPERTY(EditAnywhere, Category = "Effects")
 	class UParticleSystem * LightningThunderParticle;
 
