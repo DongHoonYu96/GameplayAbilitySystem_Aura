@@ -117,6 +117,7 @@ void AAuraCharacter::InitAbilityActorInfo()
 			AuraHUD->InitOverlay(AuraPlayerController, AuraPlayerState, AbilitySystemComponent, AttributeSet);
 		}
 	}
+	InitializePrimaryAttributes(); //정보
 }
 
 void AAuraCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

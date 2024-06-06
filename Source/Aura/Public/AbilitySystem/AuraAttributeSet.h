@@ -142,7 +142,7 @@ public:
 	// 최대 아덴이 변경될 때 호출되는 함수
 	UFUNCTION()
 	void OnRep_Identity(const FGameplayAttributeData& OldIdentity) const;
-
+	
 	UFUNCTION()
 	void OnRep_Strength(const FGameplayAttributeData& OldStrength) const;
 
@@ -154,7 +154,6 @@ public:
 
 	UFUNCTION()
 	void OnRep_Vigor(const FGameplayAttributeData& OldVigor) const;
-
 	
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
 

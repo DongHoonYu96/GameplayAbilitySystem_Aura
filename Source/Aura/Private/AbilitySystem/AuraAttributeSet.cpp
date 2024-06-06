@@ -30,6 +30,12 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	//COND_None: 이는 복제 조건을 나타냅니다. COND_None은 별다른 조건 없이 항상 복제하겠다는 것을 의미합니다.
 	//REPNOTIFY_Always: 이는 복제 알림 방식을 나타냅니다. REPNOTIFY_Always는 변수가 변경될 때마다 항상 알림이 발생하도록 설정합니다.
 	//즉, MaxMana 변수의 값이 변경될 때마다, 그 변경 사항에 대한 알림이 발생하고 관련된 함수가 호출됩니다.
+	//4개속성추가
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Strength, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Intelligence, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Resilience, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Vigor, COND_None, REPNOTIFY_Always);
+
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Health, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Mana, COND_None, REPNOTIFY_Always);
@@ -140,8 +146,6 @@ void UAuraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) 
 
 void UAuraAttributeSet::OnRep_MaxIdentity(const FGameplayAttributeData& OldMaxIdentity) const
 {
-	// 'Health' 속성의 변경을 처리
-	// 핵이면, 롤백용으로 OldVal을 알아야함!
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxIdentity, OldMaxIdentity);
 }
 
