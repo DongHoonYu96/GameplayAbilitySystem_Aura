@@ -4,8 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/PlayerController.h"
 #include "AuraPlayerController.generated.h"
+
+class UAuraInputConfig;
 enum EViewMode : int;
 class UAuraInputConfigData;
 class UInputMappingContext;
@@ -52,4 +55,12 @@ private:
 	void CursorTrace();
 	TScriptInterface<IEnemyInterface> LastActor; //가장최근에 가리킨 적
 	TScriptInterface<IEnemyInterface> ThisActor; //현재커서위치가 가리키는 적
+
+	//3개의 콜백 함수
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
+	
+	UPROPERTY(EditDefaultsOnly,Category="Input")
+	TObjectPtr<UAuraInputConfig> InputConfig; //(태그-입력)
 };

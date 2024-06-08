@@ -3,10 +3,8 @@
 
 #include "Player/AuraPlayerController.h"
 #include "EnhancedInputSubsystems.h"
-#include "EnhancedInputComponent.h"
-#include "Blueprint/AIBlueprintHelperLibrary.h"
-#include "Character/RangerCharacter.h"
 #include "Data/AuraInputConfigData.h"
+#include "Input/AuraInputComponent.h"
 #include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
@@ -99,6 +97,23 @@ void AAuraPlayerController::CursorTrace()
 	}
 }
 
+void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag) //처음누름
+{
+	GEngine->AddOnScreenDebugMessage(1,3.f,FColor::Red, *InputTag.ToString());
+}
+
+void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag) //뗌
+{
+	GEngine->AddOnScreenDebugMessage(2,3.f,FColor::Blue, *InputTag.ToString());
+
+}
+
+void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag) //누르는중
+{
+	GEngine->AddOnScreenDebugMessage(3,3.f,FColor::Green, *InputTag.ToString());
+
+}
+
 // 게임 시작 시 호출되는 함수
 void AAuraPlayerController::BeginPlay()
 {
@@ -130,15 +145,16 @@ void AAuraPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent(); // 부모 클래스의 SetupInputComponent() 함수 호출
 
-	// InputComponent를 UEnhancedInputComponent 형으로 변환하고 검사합니다.
+	// InputComponent를 UEnhancedInputComponent 형으로 변환하고 검사합니다. -> 를 상속받은 AuraInput으로 cast
 	//Get 인핸스드 인풋 컴포넌트
-	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
+	UAuraInputComponent* AuraInputComponent = CastChecked<UAuraInputComponent>(InputComponent);
 
 	// MoveAction이 발생할 때 AAuraPlayerController 클래스의 Move() 함수를 바인딩합니다.
 	//옵션 : 트리거(누르고있을때), 컴플리트(눌렀다 뗏을때)
 	//특정키가(에디터IMC에서 설정한) 눌럿을때, Data 목록 중 Move함수를 실행해라.
-	EnhancedInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
-	EnhancedInputComponent->BindAction(InputActions->RightClickThenMoveThere, ETriggerEvent::Triggered, this, &AAuraPlayerController::RightClickMove);
+	AuraInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	AuraInputComponent->BindAbilityActions(InputConfig,this,&ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased,
+		&ThisClass::AbilityInputTagHeld);
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
