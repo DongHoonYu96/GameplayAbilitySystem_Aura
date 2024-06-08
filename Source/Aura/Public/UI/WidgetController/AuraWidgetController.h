@@ -55,8 +55,9 @@ public:
 	void SetWidgetControllerParams(const FWidgetControllerParams &WCParams);
 
 	//속성들 방송하는 함수
+	UFUNCTION(BlueprintCallable)
 	virtual void BroadcastInitialValues();
-
+	
 	virtual void BindCallbacksToDependencies();
 	
 protected:

@@ -4,13 +4,19 @@
 #include "AbilitySystem/AuraAttributeSet.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
+#include "AuraGameplayTags.h"
 #include "GameFramework/Character.h"
 #include "Net/UnrealNetwork.h"
 #include "GameplayEffectExtension.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
+	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get(); //모든태그들 가져오기
 	
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Strength,GetStrengthAttribute); //맵에추가<태그,속성>
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Intelligence,GetIntelligenceAttribute); //맵에추가<태그,속성>
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Resilience, GetResilienceAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Vigor, GetVigorAttribute);
 }
 
 // !네트워크에 복제할 속성들을 등록하는 함수! 등록안해주면 빌드에러
