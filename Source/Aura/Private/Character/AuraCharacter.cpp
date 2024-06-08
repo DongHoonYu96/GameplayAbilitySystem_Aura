@@ -77,6 +77,7 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 	// 서버에서 능력 시스템 액터 정보를 초기화
 	//init ability actor info for server
 	InitAbilityActorInfo();
+	AddCharacterAbilities();
 }
 
 // 플레이어 상태가 복제될 때 호출되는 함수
