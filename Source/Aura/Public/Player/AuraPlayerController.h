@@ -8,6 +8,7 @@
 #include "GameFramework/PlayerController.h"
 #include "AuraPlayerController.generated.h"
 
+class USplineComponent;
 class UAuraInputConfig;
 enum EViewMode : int;
 class UAuraInputConfigData;
@@ -68,4 +69,19 @@ private:
 	UPROPERTY()
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
 	UAuraAbilitySystemComponent* GetASC();
+	
+	FVector CachedDestination=FVector::ZeroVector; //클릭된 목적지 저장
+	float FollowTime=0.f; //놓기전에 얼마나 오랫동안 마우스 눌렀는지 저장
+	float ShortPressThreshold = 0.5f; //짧게눌렀는지 판단하는 기준
+	bool bAutoRunning=false;
+	bool bTargeting = false; //적을 타겟팅하고 있는지
+
+	UPROPERTY(EditDefaultsOnly)
+	float AutoRunAcceptanceRadius = 50.f; //자동이동 가능 범위
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USplineComponent> Spline; //부드러운 자동이동위한 스플라인, 생성자에서 초기화
+
+	void AutoRun();
+	
 };

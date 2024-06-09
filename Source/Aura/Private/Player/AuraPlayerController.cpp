@@ -4,8 +4,12 @@
 #include "Player/AuraPlayerController.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
+#include "AuraGameplayTags.h"
 #include "EnhancedInputSubsystems.h"
+#include "NavigationPath.h"
+#include "NavigationSystem.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "Components/SplineComponent.h"
 #include "Data/AuraInputConfigData.h"
 #include "Input/AuraInputComponent.h"
 #include "Interaction/EnemyInterface.h"
@@ -13,6 +17,8 @@
 AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true; // 해당 컨트롤러가 네트워크 상에서 복제될 수 있도록 함
+
+	Spline=CreateDefaultSubobject<USplineComponent>("Spline");
 }
 
 void AAuraPlayerController::PlayerTick(float DeltaTime)
@@ -20,9 +26,8 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 	Super::PlayerTick(DeltaTime);
 	CursorTrace();
 	
+	AutoRun(); //리팩토링
 }
-
-
 
 void AAuraPlayerController::CursorTrace()
 {
@@ -102,21 +107,100 @@ void AAuraPlayerController::CursorTrace()
 
 void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag) //처음누름
 {
-	
+	//LMB인 경우
+	if(InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
+	{
+		//ThisActor 가있으면 타겟팅중임
+		bTargeting = ThisActor ? true : false;
+		bAutoRunning=false;
+	}
 }
 
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag) //뗌
 {
-	if(GetASC()==nullptr) return;
+	//LMB가 아닌 일반태그인 경우, 그냥 능력을 활성화하고 끝냄
+	if(!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
+	{
+		if(GetASC())
+		{
+			GetASC()->AbilityInputTagReleased(InputTag); //ASC의 함수호출
+		}
+		return;
+	}
 	
-	GetASC()->AbilityInputTagHeld(InputTag);
+	if(bTargeting)
+	{
+		if(GetASC())
+		{
+			GetASC()->AbilityInputTagReleased(InputTag); //ASC의 함수호출
+		}
+	}
+	else //짧게누른경우 거기로 부드럽게 이동 구현
+	{
+		APawn* ControlledPawn = GetPawn();
+		//짧게누른경우
+		if(FollowTime<=ShortPressThreshold && ControlledPawn)
+		{
+			//(시작위치, 끝위치)
+			UNavigationPath* NavPath =
+				UNavigationSystemV1::FindPathToLocationSynchronously(this, ControlledPawn->GetActorLocation(),CachedDestination);
+			if(NavPath)
+			{
+				Spline->ClearSplinePoints();
+				for(const FVector& PointLoc : NavPath->PathPoints) //목적지로가는 경로들에 대해
+				{
+					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World); //스플라인 지점 추가
+					DrawDebugSphere(GetWorld(),PointLoc,8.f,8,FColor::Green, false, 5.f); //디버깅용
+				}
+				CachedDestination = NavPath->PathPoints[NavPath->PathPoints.Num()-1]; //이상한곳 클릭방지, 클릭지점을 PathPoint 위의 점으로 강제설정
+				bAutoRunning=true; //오토러닝 켜주기
+			}
+			
+		}
+		FollowTime=0.f; //팔로우타임리셋
+		bTargeting=false; //타게팅여부 리셋
+	}
+	
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag) //누르는중
 {
-	if(GetASC()==nullptr) return;
+	//LMB가 아닌 일반태그인 경우, 그냥 능력을 활성화하고 끝냄
+	if(!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
+	{
+		if(GetASC())
+		{
+			GetASC()->AbilityInputTagHeld(InputTag); //ASC의 함수호출
+		}
+		return;
+	}
 	
-	GetASC()->AbilityInputTagHeld(InputTag);
+	//LMB인경우, 달리는 문제를 해결해야함
+	//타겟팅중인 적이 있는 경우
+	if(bTargeting)
+	{
+		if(GetASC())
+		{
+			GetASC()->AbilityInputTagHeld(InputTag); //ASC의 함수호출
+		}
+	}
+	else //타겟팅중인 적이 없는경우
+	{
+		FollowTime+=GetWorld()->GetDeltaSeconds(); //몇초눌렀는지 저장
+
+		FHitResult Hit;
+		if(GetHitResultUnderCursor(ECC_Visibility,false,Hit))
+		{
+			CachedDestination = Hit.ImpactPoint; //커서눌린위치를 저장
+		}
+
+		//이동, 이동하려면 폰이필요함
+		if(APawn* ControlledPawn = GetPawn())
+		{
+			const FVector WorldDirection = (CachedDestination - ControlledPawn->GetActorLocation()).GetSafeNormal(); //b-a 하면 방향이나옴
+			ControlledPawn->AddMovementInput(WorldDirection); //그 방향으로 이동
+		}
+	}
 }
 
 //싱글톤 Getter
@@ -128,6 +212,26 @@ UAuraAbilitySystemComponent* AAuraPlayerController::GetASC()
 			Cast<UAuraAbilitySystemComponent>(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn<APawn>()));
 	}
 	return AuraAbilitySystemComponent;
+}
+
+void AAuraPlayerController::AutoRun()
+{
+	if(!bAutoRunning) return;
+	if(APawn* ControlledPawn = GetPawn())
+	{
+		//캐릭이 스플라인위에 없을수도있음 -> 캐릭에서 스플라인에 가까운 위치찾기
+		const FVector LocationOnSpline = Spline->FindLocationClosestToWorldLocation(ControlledPawn->GetActorLocation(), ESplineCoordinateSpace::World);
+		//방향찾기
+		const FVector Direction = Spline->FindDirectionClosestToWorldLocation(LocationOnSpline, ESplineCoordinateSpace::World);
+		ControlledPawn->AddMovementInput(Direction);
+
+		//자동이동 범위밖인경우 오토런을 꺼주기
+		const float DistanceToDestination = (LocationOnSpline - CachedDestination).Length();
+		if(DistanceToDestination<=AutoRunAcceptanceRadius)
+		{
+			bAutoRunning=false;
+		}
+	}
 }
 
 // 게임 시작 시 호출되는 함수
