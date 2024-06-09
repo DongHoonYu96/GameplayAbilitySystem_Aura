@@ -8,3 +8,8 @@ int32 ICombatInterface::GetPlayerLevel()
 {
 	return 0; //구현안한경우, 0리턴
 }
+
+FVector ICombatInterface::GetCombatSocketLocation()
+{
+	return FVector();
+}

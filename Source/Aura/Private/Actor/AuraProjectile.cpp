@@ -9,6 +9,7 @@
 AAuraProjectile::AAuraProjectile()
 {
 	PrimaryActorTick.bCanEverTick = false;
+	bReplicates=true; //발사체 서버에서 클라로 복사
 
 	//구체달고, 루트로만듬
 	Sphere = CreateDefaultSubobject<USphereComponent>("Sphere");
