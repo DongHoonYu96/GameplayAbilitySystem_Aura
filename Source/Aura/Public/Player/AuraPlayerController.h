@@ -55,8 +55,8 @@ private:
 	
 
 	void CursorTrace();
-	TScriptInterface<IEnemyInterface> LastActor; //가장최근에 가리킨 적
-	TScriptInterface<IEnemyInterface> ThisActor; //현재커서위치가 가리키는 적
+	IEnemyInterface* LastActor; //가장최근에 가리킨 적
+	IEnemyInterface* ThisActor; //현재커서위치가 가리키는 적
 	FHitResult CursorHit;
 
 	//3개의 콜백 함수

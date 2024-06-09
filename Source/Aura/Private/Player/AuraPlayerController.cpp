@@ -38,70 +38,18 @@ void AAuraPlayerController::CursorTrace()
 	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
 
 	// 마우스 커서 아래에 아무것도 막히지 않았다면 함수를 종료합니다.
-	if (!CursorHit.bBlockingHit)
-		return;
+	if (!CursorHit.bBlockingHit) return;
 
 	// LastActor를 현재 ThisActor로 설정합니다.
 	// 새로계산 전에 저장목적
 	LastActor = ThisActor;
-	// CursorHit에서 반환된 충돌된 액터를 IEnemyInterface로 캐스팅하여 ThisActor에 할당합니다.
-	// IEnemyInterface를 구현한 액터에 대해서만 작동합니다.
-	//아닌 액터이면 nullptr
-	//* interface는 =안됨, setter써야함! *
-	AActor* HitActor = CursorHit.GetActor();
-	if (HitActor && HitActor->Implements<UEnemyInterface>())
+	ThisActor = Cast<IEnemyInterface>(CursorHit.GetActor());
+	if(LastActor!=ThisActor)
 	{
-		ThisActor.SetObject(HitActor);
-		ThisActor.SetInterface(Cast<IEnemyInterface>(HitActor));
+		if (LastActor) LastActor->UnHighlightActor(); //이전적을 해제
+		if (ThisActor) ThisActor->HighlightActor(); //이번적을 하일라이트
 	}
-
-	/**
-	 * Line trace from cursor. There are several scenarios:
-	 *  A. LastActor is null && ThisActor is null
-	 *		- Do nothing
-	 *	B. LastActor is null && ThisActor is valid
-	 *		- Highlight ThisActor
-	 *	C. LastActor is valid && ThisActor is null
-	 *		- UnHighlight LastActor
-	 *	D. Both actors are valid, but LastActor != ThisActor
-	 *		- UnHighlight LastActor, and Highlight ThisActor
-	 *	E. Both actors are valid, and are the same actor
-	 *		- Do nothing
-	 */
-
-	if (LastActor == nullptr)
-	{
-		if (ThisActor != nullptr)
-		{
-			// Case B
-			ThisActor->HighlightActor();
-		}
-		else
-		{
-			// Case A - both are null, do nothing
-		}
-	}
-	else // LastActor is valid
-	{
-		if (ThisActor == nullptr)
-		{
-			// Case C
-			LastActor->UnHighlightActor();
-		}
-		else // both actors are valid
-		{
-			if (LastActor != ThisActor)
-			{
-				// Case D
-				LastActor->UnHighlightActor();
-				ThisActor->HighlightActor();
-			}
-			else
-			{
-				// Case E - do nothing
-			}
-		}
-	}
+	
 }
 
 void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag) //처음누름
