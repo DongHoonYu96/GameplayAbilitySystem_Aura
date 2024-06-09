@@ -2,7 +2,10 @@
 
 
 #include "Player/AuraPlayerController.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
 #include "EnhancedInputSubsystems.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Data/AuraInputConfigData.h"
 #include "Input/AuraInputComponent.h"
 #include "Interaction/EnemyInterface.h"
@@ -99,19 +102,32 @@ void AAuraPlayerController::CursorTrace()
 
 void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag) //처음누름
 {
-	GEngine->AddOnScreenDebugMessage(1,3.f,FColor::Red, *InputTag.ToString());
+	
 }
 
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag) //뗌
 {
-	GEngine->AddOnScreenDebugMessage(2,3.f,FColor::Blue, *InputTag.ToString());
-
+	if(GetASC()==nullptr) return;
+	
+	GetASC()->AbilityInputTagHeld(InputTag);
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag) //누르는중
 {
-	GEngine->AddOnScreenDebugMessage(3,3.f,FColor::Green, *InputTag.ToString());
+	if(GetASC()==nullptr) return;
+	
+	GetASC()->AbilityInputTagHeld(InputTag);
+}
 
+//싱글톤 Getter
+UAuraAbilitySystemComponent* AAuraPlayerController::GetASC()
+{
+	if(AuraAbilitySystemComponent == nullptr)
+	{
+		AuraAbilitySystemComponent =
+			Cast<UAuraAbilitySystemComponent>(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn<APawn>()));
+	}
+	return AuraAbilitySystemComponent;
 }
 
 // 게임 시작 시 호출되는 함수
