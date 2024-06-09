@@ -31,7 +31,6 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 
 void AAuraPlayerController::CursorTrace()
 {
-	FHitResult CursorHit;
 	// 레이캐스트를 통해 마우스 커서 아래에 있는 객체에 대한 충돌 결과를 가져옵니다.
 	// ECC_Visibility 콜리전 채널을 사용하여 가시성이 있는 오브젝트를 대상으로 합니다.
 	// 두 번째 매개변수는 복합 콜리전에 대한 단일 충돌만 반환해야 하는지 여부를 나타냅니다.
@@ -188,10 +187,10 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag) //누르�
 	{
 		FollowTime+=GetWorld()->GetDeltaSeconds(); //몇초눌렀는지 저장
 
-		FHitResult Hit;
-		if(GetHitResultUnderCursor(ECC_Visibility,false,Hit))
+		
+		if(CursorHit.bBlockingHit)
 		{
-			CachedDestination = Hit.ImpactPoint; //커서눌린위치를 저장
+			CachedDestination = CursorHit.ImpactPoint; //커서눌린위치를 저장
 		}
 
 		//이동, 이동하려면 폰이필요함
