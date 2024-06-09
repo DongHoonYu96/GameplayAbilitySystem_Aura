@@ -132,7 +132,7 @@ int32 AAuraCharacter::GetPlayerLevel()
 void AAuraCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	PlayerInputComponent->BindAction("RightClick", IE_Pressed, this, &AAuraCharacter::MoveToLocation);
+	//PlayerInputComponent->BindAction("RightClick", IE_Pressed, this, &AAuraCharacter::MoveToLocation);
 
 	
 }
