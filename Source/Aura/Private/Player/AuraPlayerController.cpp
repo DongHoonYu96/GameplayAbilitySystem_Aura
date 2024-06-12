@@ -74,17 +74,14 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag) //뗌
 		}
 		return;
 	}
+
+	//쉬프트키랑 상관없이, 마우스놓으면 ASC에 알림
+	if(GetASC()) GetASC()->AbilityInputTagReleased(InputTag); //ASC의 함수호출 (입력이더이상 안눌린다고 알림)
 	
-	if(bTargeting)
+	//아래의경우 거기로 부드럽게 이동 구현
+	if(!bTargeting && !bShiftKeyDown)
 	{
-		if(GetASC())
-		{
-			GetASC()->AbilityInputTagReleased(InputTag); //ASC의 함수호출
-		}
-	}
-	else //짧게누른경우 거기로 부드럽게 이동 구현
-	{
-		APawn* ControlledPawn = GetPawn();
+		const APawn* ControlledPawn = GetPawn();
 		//짧게누른경우
 		if(FollowTime<=ShortPressThreshold && ControlledPawn)
 		{
@@ -95,10 +92,10 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag) //뗌
 			{
 				Spline->ClearSplinePoints();
 				for(const FVector& PointLoc : NavPath->PathPoints) //목적지로가는 경로들에 대해
-				{
+					{
 					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World); //스플라인 지점 추가
 					DrawDebugSphere(GetWorld(),PointLoc,8.f,8,FColor::Green, false, 5.f); //디버깅용
-				}
+					}
 				CachedDestination = NavPath->PathPoints[NavPath->PathPoints.Num()-1]; //이상한곳 클릭방지, 클릭지점을 PathPoint 위의 점으로 강제설정
 				bAutoRunning=true; //오토러닝 켜주기
 			}
@@ -107,7 +104,7 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag) //뗌
 		FollowTime=0.f; //팔로우타임리셋
 		bTargeting=false; //타게팅여부 리셋
 	}
-	
+
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag) //누르는중
@@ -123,12 +120,12 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag) //누르�
 	}
 	
 	//LMB인경우, 달리는 문제를 해결해야함
-	//타겟팅중인 적이 있는 경우
-	if(bTargeting)
+	//타겟팅중인 적이 있는 경우 or 쉬프트키누르눈중
+	if(bTargeting || bShiftKeyDown)
 	{
 		if(GetASC())
 		{
-			GetASC()->AbilityInputTagHeld(InputTag); //ASC의 함수호출
+			GetASC()->AbilityInputTagHeld(InputTag); //ASC의 함수호출 (능력활성화 : 불발사)
 		}
 	}
 	else //타겟팅중인 적이 없는경우
@@ -220,6 +217,8 @@ void AAuraPlayerController::SetupInputComponent()
 	//옵션 : 트리거(누르고있을때), 컴플리트(눌렀다 뗏을때)
 	//특정키가(에디터IMC에서 설정한) 눌럿을때, Data 목록 중 Move함수를 실행해라.
 	AuraInputComponent->BindAction(InputActions->InputMove, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	AuraInputComponent->BindAction(ShiftAction, ETriggerEvent::Started, this, &AAuraPlayerController::ShiftPressed);
+	AuraInputComponent->BindAction(ShiftAction, ETriggerEvent::Completed, this, &AAuraPlayerController::ShiftReleased);
 	AuraInputComponent->BindAbilityActions(InputConfig,this,&ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased,
 		&ThisClass::AbilityInputTagHeld);
 }

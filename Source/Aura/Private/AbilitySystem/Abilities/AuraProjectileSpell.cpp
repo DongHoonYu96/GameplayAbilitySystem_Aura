@@ -15,7 +15,7 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 	
 }
 
-void UAuraProjectileSpell::SpawnProjectile()
+void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocation)
 {
 	//발사체는 서버에서생성, 클라는 복제본을 보게될거임
 	//발사체가 서버에있는지 어케암?
@@ -26,9 +26,14 @@ void UAuraProjectileSpell::SpawnProjectile()
 	if(CombatInterface)
 	{
 		const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
+		FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation(); //방향벡터의 회전각 구하기
+		Rotation.Pitch=0.f; // 지면과 평행하게 움직이도록
+		
 		FTransform SpawnTransform; //발사체생성할 위치 == 지팡이끝 / but, 캐릭터에의존하면안됨, 전투인터페이스에서 소켓위치를 반환받으면 좋겠음.
-		SpawnTransform.SetLocation(SocketLocation);
+		SpawnTransform.SetLocation(SocketLocation); 
+		
 		//TODO : 발사체 회전설정
+		SpawnTransform.SetRotation(Rotation.Quaternion());  //쿼터니언 : 짐벌락없는 회전표현방법
 		
 		//<생성하고자하는타입> (클래스, 날아갈 회전값, 수행자, 수행할폰, 충돌-겹침 상관없이 항상생성)
 		AAuraProjectile* Projectile = GetWorld()->SpawnActorDeferred<AAuraProjectile>(
@@ -42,6 +47,7 @@ void UAuraProjectileSpell::SpawnProjectile()
 		
 		
 		//발사체 생성완료하려면 발사체를 가져와야함(?)
+		/** Called to finish the spawning process, generally in the case of deferred spawning */
 		Projectile->FinishSpawning(SpawnTransform);
 	}
 }

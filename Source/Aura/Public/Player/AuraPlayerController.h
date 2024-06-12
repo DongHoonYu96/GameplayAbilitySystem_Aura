@@ -40,6 +40,7 @@ private:
 	//BP에서 IMC 선택해주기 위함
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UInputMappingContext> AuraContext;
+	
 
 	//IMC에서 설정한 함수들 구현!!
 	//UPROPERTY(EditAnywhere,Category="Input")
@@ -47,12 +48,17 @@ private:
 	void Move(const FInputActionValue& InputActionValue);
 	void RightClickMove(const FInputActionValue& InputActionValue);
 	
-
 	//인풋들을 Data들로 관리하기위함(점프,큐,스킬 등..)
 	//BP > MoveActions에 박아주면 됨.
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UAuraInputConfigData> InputActions;
-	
+
+	UPROPERTY(EditAnywhere,Category="Input")
+	TObjectPtr<UInputAction> ShiftAction;
+
+	void ShiftPressed(){bShiftKeyDown=true;};
+	void ShiftReleased(){bShiftKeyDown=false;};
+	bool bShiftKeyDown=false;
 
 	void CursorTrace();
 	IEnemyInterface* LastActor; //가장최근에 가리킨 적

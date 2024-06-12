@@ -17,6 +17,10 @@ AAuraCharacterBase::AAuraCharacterBase()
  	// You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false; //틱마다 tick함수 실행하지마
 
+	//캐릭겹치면 카메라 줌인 해결 : 캡슐, 매시가 카메라 무시하도록
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera,ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECC_Camera,ECR_Ignore);
+
 	//새콤포넌트 만듬(이름)
 	Weapon=CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	//무기를 소켓에 연결
