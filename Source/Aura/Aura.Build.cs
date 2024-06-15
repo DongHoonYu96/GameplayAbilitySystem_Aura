@@ -9,9 +9,9 @@ public class Aura : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" ,
-			"EnhancedInput", "GameplayAbilities" ,"AIModule","NavigationSystem"});
+			"EnhancedInput", "GameplayAbilities" ,"AIModule"});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "GameplayTags","GameplayTasks" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "GameplayTags","GameplayTasks" ,"NavigationSystem" ,"Niagara"});
 		//필요한 모듈 추가!
 
 		// Uncomment if you are using Slate UI

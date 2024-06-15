@@ -5,6 +5,9 @@
 
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "NiagaraFunctionLibrary.h"
+#include "Components/AudioComponent.h"
 
 AAuraProjectile::AAuraProjectile()
 {
@@ -29,14 +32,47 @@ AAuraProjectile::AAuraProjectile()
 void AAuraProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+	SetLifeSpan(LifeSpan); //이 발사체의 수명을 정함
 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap); //오버랩 이벤트 달기, 실행될함수
-	
+
+	LoopingSoundComponent = UGameplayStatics::SpawnSoundAttached(LoopingSound,GetRootComponent());
+}
+/*
+ * 
+ */
+void AAuraProjectile::Destroyed()
+{
+	//클라의경우 && 복제안된경우
+	if(!bHit && !HasAuthority())
+	{
+		//오버랩되면 소리재생
+		UGameplayStatics::PlaySoundAtLocation(this,ImpactSound,GetActorLocation(),FRotator::ZeroRotator);
+
+		//오버랩되면 효과실행
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());	
+	}
+	Super::Destroyed();
 }
 
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+                                      UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	
+	//오버랩되면 소리재생
+	UGameplayStatics::PlaySoundAtLocation(this,ImpactSound,GetActorLocation(),FRotator::ZeroRotator);
+
+	//오버랩되면 효과실행
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());
+	LoopingSoundComponent->Stop(); // 적과오버랩되면 불 자체에서나는 루핑사운드 중지
+
+	//서버에있으면 파괴 => 클라에복제안되게
+	if(HasAuthority())
+	{
+		Destroy();
+	}
+	else //클라에서 파괴되기전 겹치는경우, bHit=true이면 이미 복제된거임 / bHit=false이면 복제안된거임, play
+	{
+		bHit=true;
+	}
 }
 
 
