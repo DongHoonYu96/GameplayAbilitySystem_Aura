@@ -6,6 +6,7 @@
 #include "AbilitySystemComponent.h"
 #include "GameplayEffectTypes.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "Aura/Aura.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -20,6 +21,8 @@ AAuraCharacterBase::AAuraCharacterBase()
 	//캐릭겹치면 카메라 줌인 해결 : 캡슐, 매시가 카메라 무시하도록
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera,ECR_Ignore);
 	GetMesh()->SetCollisionResponseToChannel(ECC_Camera,ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECC_Projectile,ECR_Overlap);
+	GetMesh()->SetGenerateOverlapEvents(true);
 
 	//새콤포넌트 만듬(이름)
 	Weapon=CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");

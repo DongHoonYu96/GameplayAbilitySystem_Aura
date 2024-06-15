@@ -7,6 +7,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Aura/Aura.h"
 #include "Components/AudioComponent.h"
 
 AAuraProjectile::AAuraProjectile()
@@ -17,6 +18,7 @@ AAuraProjectile::AAuraProjectile()
 	//구체달고, 루트로만듬
 	Sphere = CreateDefaultSubobject<USphereComponent>("Sphere");
 	SetRootComponent(Sphere);
+	Sphere->SetCollisionObjectType(ECC_Projectile);
 	Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	Sphere->SetCollisionResponseToAllChannels(ECR_Ignore); //모든대상에대해 겹쳐도 무시함
 	Sphere->SetCollisionResponseToChannel(ECC_WorldDynamic,ECR_Overlap);//월드 다이나믹 유형과는 겹침이벤트
