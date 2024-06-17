@@ -56,7 +56,7 @@ int32 AAuraEnemy::GetPlayerLevel()
 void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	InitAbilityActorInfo();
 }
 
 void AAuraEnemy::InitAbilityActorInfo()
@@ -65,4 +65,6 @@ void AAuraEnemy::InitAbilityActorInfo()
 	//첫 번째 this는 능력의 소유자(Owner)를, 두 번째 this는 능력이 적용될 대상(Actor)
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
+
+	InitializeDefaultAttributes();
 }

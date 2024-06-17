@@ -3,6 +3,8 @@
 
 #include "Actor/AuraProjectile.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
+#include "AbilitySystemComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -66,10 +68,16 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());
 	LoopingSoundComponent->Stop(); // 적과오버랩되면 불 자체에서나는 루핑사운드 중지
 
-	//서버에있으면 파괴 => 클라에복제안되게
+	//서버에있는경우 
 	if(HasAuthority())
 	{
-		Destroy();
+		if(auto TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor))
+		{
+			//GE 적용하기
+			TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
+		}
+		
+		Destroy(); //파괴 => 클라에복제안되게
 	}
 	else //클라에서 파괴되기전 겹치는경우, bHit=true이면 이미 복제된거임 / bHit=false이면 복제안된거임, play
 	{
