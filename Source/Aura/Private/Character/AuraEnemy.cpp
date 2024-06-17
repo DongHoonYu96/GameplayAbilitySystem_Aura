@@ -5,6 +5,8 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "Aura/Aura.h"
+#include "Components/WidgetComponent.h"
+#include "UI/Widget/AuraUserWidget.h"
 
 AAuraEnemy::AAuraEnemy()
 {
@@ -27,6 +29,9 @@ AAuraEnemy::AAuraEnemy()
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 	// UAuraAttributeSet 타입의 AttributeSet을 기본 하위 객체로 생성합니다.
 	// "AttributeSet"이라는 이름을 가진 이 컴포넌트는 캐릭터의 다양한 속성(예: 체력, 마나, 공격력 등)을 관리합니다.
+
+	HealthBar = CreateDefaultSubobject<UWidgetComponent>("HealthBar");
+	HealthBar->SetupAttachment(GetRootComponent());
 
 }
 
@@ -57,6 +62,34 @@ void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	InitAbilityActorInfo();
+
+	if(UAuraUserWidget* AuraUserWidget = Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()))
+	{
+		AuraUserWidget->SetWidgetController(this); //적 자체를 위젯컨트롤러로 설정! (위젯컨트롤러는 obj임 == 아무거나 될수있음)
+	}
+	
+	//위젯컨트롤러 set후 바인딩해야함
+	const UAuraAttributeSet* AuraAS = Cast<UAuraAttributeSet>(AttributeSet);
+	if(AuraAS)
+	{
+		//속성값 변경시 방송
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAS->GetHealthAttribute()).AddLambda(
+			[this](const FOnAttributeChangeData& Data)
+			{
+				OnHealthChanged.Broadcast(Data.NewValue);
+			}
+		);
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAS->GetMaxHealthAttribute()).AddLambda(
+			[this](const FOnAttributeChangeData& Data)
+			{
+				OnMaxHealthChanged.Broadcast(Data.NewValue);
+			}
+		);
+		//초기값방송
+		OnHealthChanged.Broadcast(AuraAS->GetHealth());
+		OnMaxHealthChanged.Broadcast(AuraAS->GetMaxHealth());
+	}
+	
 }
 
 void AAuraEnemy::InitAbilityActorInfo()
