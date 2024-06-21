@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "AuraGameModeBase.generated.h"
 
+class UCharacterClassInfo;
 /**
  * 
  */
@@ -17,6 +18,8 @@ class AURA_API AAuraGameModeBase : public AGameModeBase
 protected:
 	virtual void BeginPlay() override;
 
-	
+public:
+	UPROPERTY(EditDefaultsOnly,Category="Character Class Defaults")
+	TObjectPtr<UCharacterClassInfo> CharacterClassInfo;
 	
 };
