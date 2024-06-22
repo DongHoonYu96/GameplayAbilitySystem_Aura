@@ -162,6 +162,13 @@ public:
 	FGameplayAttributeData ManaRegeneration;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, ManaRegeneration);
 
+	/*
+	 *  Meta 속성
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Meta Attributes") //복제안함
+	FGameplayAttributeData IncomingDamage;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, IncomingDamage);
+
 	// 체력이 변경될 때 호출되는 함수
 	UFUNCTION()
 	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
