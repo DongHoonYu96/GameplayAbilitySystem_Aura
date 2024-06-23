@@ -29,6 +29,11 @@ public:
 	UAttributeSet* GetAttributeSet() const {return AttributeSet;} //@Getter
 
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+
+	virtual void Die() override;
+
+	UFUNCTION(NetMulticast, Reliable) //멀티캐스트RPC 함수, 죽음은 믿을만함
+	virtual void MulticastHandleDeath();
 	
 protected:
 	// Called when the game starts or when spawned

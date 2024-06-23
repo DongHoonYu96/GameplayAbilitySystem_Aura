@@ -66,6 +66,12 @@ int32 AAuraEnemy::GetPlayerLevel()
 	return Level;
 }
 
+void AAuraEnemy::Die()
+{
+	//적의경우 수명설정
+	SetLifeSpan(LifeSpan);
+	Super::Die();
+}
 
 
 void AAuraEnemy::BeginPlay()

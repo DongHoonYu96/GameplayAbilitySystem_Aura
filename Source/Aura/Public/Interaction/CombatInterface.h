@@ -32,4 +32,6 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable) //버츄어쓰면 BP에서 구현못함 -> native쓰고 base에서 _imp붙여서 cpp에서 구현
 	UAnimMontage* GetHitReactMontage();
+
+	virtual void Die()=0;
 };
