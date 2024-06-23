@@ -11,13 +11,14 @@ struct AuraDamageStatics
 {
 	//캡쳐속성 선언 매크로 : 속성포인터가지고있음
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Armor);
+	DECLARE_ATTRIBUTE_CAPTUREDEF(ArmorPenetration);
 	DECLARE_ATTRIBUTE_CAPTUREDEF(BlockChance);
 	
 	AuraDamageStatics()
 	{
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, Armor, Target, false); //아머라는 속성을 캡쳐하겠다. 스냅샷X
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, Armor, Target, false); //아머라는 속성을 캡쳐하겠다. from target(적) 스냅샷X
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, BlockChance, Target, false); //아머라는 속성을 캡쳐하겠다.
-
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, ArmorPenetration, Source, false); //아머라는 속성을 캡쳐하겠다. from 공격자(아우라)임에 주의
 	}
 	
 };
@@ -33,6 +34,8 @@ UExecCalc_Damage::UExecCalc_Damage()
 {
 	RelevantAttributesToCapture.Add(DamageStatics().ArmorDef); //캡쳐속성 배열에추가
 	RelevantAttributesToCapture.Add(DamageStatics().BlockChanceDef); //캡쳐속성 배열에추가
+	RelevantAttributesToCapture.Add(DamageStatics().ArmorPenetrationDef); //캡쳐속성 배열에추가
+
 }
 
 void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
@@ -66,7 +69,23 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	//블록확률 25%
 	const bool bBlocked = FMath::RandRange(1,100) < TargetBlockChance;
 	if(bBlocked) Damage *= .5f;
-	
+
+	//방어력 얻어오기
+	float TargetArmor = 0.f;
+	//현재 설정되있는 BlockChance값을 얻어와서 Out변수에 집어넣음 (현재 4로 설정되있음)
+	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParameters,TargetArmor );
+	TargetBlockChance = FMath::Max<float>(TargetArmor,0.f);
+
+	//방관 얻어오기
+	float SourceArmorPenetration = 0.f;
+	//현재 설정되있는 BlockChance값을 얻어와서 Out변수에 집어넣음 (현재 4로 설정되있음)
+	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorPenetrationDef, EvaluationParameters,SourceArmorPenetration );
+	TargetBlockChance = FMath::Max<float>(SourceArmorPenetration,0.f);
+
+	//방관은 방어력을 %로 무시함 , ex : 방관100이면 방어 100% 무시함 / 뒤의계수 == op 조정
+	if(SourceArmorPenetration>100.f) SourceArmorPenetration=100.f;
+	const float EffectiveArmor = TargetArmor *= (100 - SourceArmorPenetration * 0.25f) / 100.f; //유효방어력 = 방관계산후 방어력
+	Damage *= (100-EffectiveArmor * 0.33f) / 100.f;
 	
 	//실제속성변경
 	const FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(), EGameplayModOp::Additive, Damage);
