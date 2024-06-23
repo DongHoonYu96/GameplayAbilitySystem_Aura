@@ -6,6 +6,7 @@
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "Interaction/CombatInterface.h"
 
+//캡쳐정의의 매개변수설정
 UMMC_MaxHealth::UMMC_MaxHealth()
 {
 	//VigorDef 채우기
@@ -13,7 +14,7 @@ UMMC_MaxHealth::UMMC_MaxHealth()
 	VigorDef.AttributeSource=EGameplayEffectAttributeCaptureSource::Target; //타겟vs소스
 	VigorDef.bSnapshot = false; //타이밍
 	
-	RelevantAttributesToCapture.Add(VigorDef);
+	RelevantAttributesToCapture.Add(VigorDef); //관련속성에 추가하여 캡쳐
 }
 
 float UMMC_MaxHealth::CalculateBaseMagnitude_Implementation(const FGameplayEffectSpec& Spec) const
