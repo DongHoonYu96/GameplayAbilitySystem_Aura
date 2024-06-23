@@ -8,6 +8,7 @@
 #include "GameFramework/PlayerController.h"
 #include "AuraPlayerController.generated.h"
 
+class UDamageTextComponent;
 class USplineComponent;
 class UAuraInputConfig;
 enum EViewMode : int;
@@ -28,6 +29,8 @@ public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
 
+	UFUNCTION(Client, Reliable) //클라이언트RPC, 신뢰가능한
+	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
 	
 protected:
 	virtual void BeginPlay() override;
@@ -90,5 +93,7 @@ private:
 	TObjectPtr<USplineComponent> Spline; //부드러운 자동이동위한 스플라인, 생성자에서 초기화
 
 	void AutoRun();
-	
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
 };

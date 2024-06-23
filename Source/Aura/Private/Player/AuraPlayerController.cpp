@@ -11,8 +11,10 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Components/SplineComponent.h"
 #include "Data/AuraInputConfigData.h"
+#include "GameFramework/Character.h"
 #include "Input/AuraInputComponent.h"
 #include "Interaction/EnemyInterface.h"
+#include "UI/Widget/DamageTextComponent.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
@@ -27,6 +29,22 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 	CursorTrace();
 	
 	AutoRun(); //리팩토링
+}
+
+//대상 캐릭터위에 데미지 띄워주는 함수
+//RPC함수 : 서버에서 호출가능
+void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount, ACharacter* TargetCharacter)
+{
+	//대상캐릭터위치에 위젯생성함
+	if(IsValid(TargetCharacter) && DamageTextComponentClass)
+	{
+		UDamageTextComponent* DamageText= NewObject<UDamageTextComponent>(TargetCharacter, DamageTextComponentClass);
+		DamageText->RegisterComponent(); //위젯을 동적생성 -> 수동으로 컴포넌트 등록
+		//Text를 대상캐릭터의 루트에 붙이기
+		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(),FAttachmentTransformRules::KeepRelativeTransform);
+		DamageText->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform); //계속못따라다니도록 분리, 그냥 사라질숫자임
+		DamageText->SetDamageText(DamageAmount); //Text값 설정
+	}
 }
 
 void AAuraPlayerController::CursorTrace()

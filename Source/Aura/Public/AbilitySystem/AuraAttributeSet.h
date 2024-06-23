@@ -232,8 +232,9 @@ public:
 	UFUNCTION()
 	void OnRep_ManaRegeneration(const FGameplayAttributeData& OldManaRegeneration) const;
 
-	
+private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
+	void ShowFloatingText(const FEffectProperties& Props, float Damage) const;
 
 };
 
