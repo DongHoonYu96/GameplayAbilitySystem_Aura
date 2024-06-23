@@ -152,6 +152,15 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			SetHealth(FMath::Clamp(NewHealth,0.f,GetMaxHealth())); //음수인경우 조정하고 체력깍기
 
 			const bool bFatal = NewHealth<=0.f; //사망에이를만한 피해인지
+
+			//사망이아닌경우 히트리액션을 재생
+			if(!bFatal)
+			{
+				//HitReactTag일때만 능력활성화
+				FGameplayTagContainer TagContainer;
+				TagContainer.AddTag(FAuraGameplayTags::Get().Effects_HitReact);
+				Props.TargetASC->TryActivateAbilitiesByTag(TagContainer);
+			}
 		}
 	}
 }

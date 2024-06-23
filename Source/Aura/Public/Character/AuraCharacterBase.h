@@ -14,6 +14,7 @@ class UGameplayEffect;
 class UAbilitySystemComponent;
 class UAttributeSet;
 class USkeletalMeshComponent;
+class UAnimMontage;
 
 
 UCLASS(Abstract) //추상클래스임 
@@ -27,6 +28,7 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const {return AttributeSet;} //@Getter
 
+	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
 	
 protected:
 	// Called when the game starts or when spawned
@@ -66,5 +68,8 @@ protected:
 private:
 	UPROPERTY(EditAnywhere, Category = "Attributes")
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TObjectPtr<UAnimMontage> HitReactMontage;
 	
 };
