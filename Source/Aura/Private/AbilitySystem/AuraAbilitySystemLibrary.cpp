@@ -54,7 +54,7 @@ void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* World
 	float Level, UAbilitySystemComponent* ASC)
 {
 	AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
-	if(AuraGameMode==nullptr) return;
+	if (AuraGameMode == nullptr) return;
 
 	AActor* AvatarActor = ASC->GetAvatarActor();
 
@@ -83,10 +83,8 @@ void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* World
 //시작 능력을 주는함수
 void UAuraAbilitySystemLibrary::GiveStartupAbilities(const UObject* WorldContextObject, UAbilitySystemComponent* ASC)
 {
-	//게임모드를 얻어오고
 	AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
-	if(AuraGameMode==nullptr) return;
-
+	if (AuraGameMode == nullptr) return;
 	//게임모드에있는 클래스정보들에 대해
 	UCharacterClassInfo* CharacterClassInfo = AuraGameMode->CharacterClassInfo;
 	//그안에있는 능력들에대해 giveAbility 하면됨
@@ -95,4 +93,14 @@ void UAuraAbilitySystemLibrary::GiveStartupAbilities(const UObject* WorldContext
 		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClass, 1);
 		ASC->GiveAbility(AbilitySpec);
 	}
+}
+
+UCharacterClassInfo* UAuraAbilitySystemLibrary::GetCharacterClassInfo(const UObject* WorldContextObject)
+{
+	//게임모드를 얻어오고
+	AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	if (AuraGameMode == nullptr) return nullptr;
+
+	//게임모드에있는 클래스정보들에 대해
+	return  AuraGameMode->CharacterClassInfo;
 }
