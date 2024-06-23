@@ -89,6 +89,9 @@ void AAuraCharacterBase::MulticastHandleDeath_Implementation()
 	
 	//캡슐충돌 비활성화
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	//용해효과 실행
+	Dissolve();
 }
 
 // Called when the game starts or when spawned
@@ -135,5 +138,23 @@ void AAuraCharacterBase::AddCharacterAbilities()
 	AuraASC->AddCharacterAbilities(StartupAbilities);
 	//when call? 플레이어의경우 : 빙의될때
 	//적의경우 : ??
+}
+
+void AAuraCharacterBase::Dissolve()
+{
+	if(IsValid(DissolveMaterialInstance))
+	{
+		//새로운 머테리얼만들고
+		UMaterialInstanceDynamic* DynamicMatInst = UMaterialInstanceDynamic::Create(DissolveMaterialInstance, this);
+		GetMesh()->SetMaterial(0,DynamicMatInst); //설정
+		StartDissolveTimeLine(DynamicMatInst);
+	}
+	if(IsValid(WeaponDissolveMaterialInstance))
+	{
+		//새로운 머테리얼만들고
+		UMaterialInstanceDynamic* DynamicMatInst = UMaterialInstanceDynamic::Create(WeaponDissolveMaterialInstance, this);
+		Weapon->SetMaterial(0,DynamicMatInst); //설정
+		StartWeaponDissolveTimeLine(DynamicMatInst);
+	}
 }
 

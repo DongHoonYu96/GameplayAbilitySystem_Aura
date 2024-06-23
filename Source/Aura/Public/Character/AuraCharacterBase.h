@@ -69,6 +69,22 @@ protected:
 	virtual void InitializeDefaultAttributes() const;
 
 	void AddCharacterAbilities();
+
+	/* 용해 Effect*/
+	
+	void Dissolve(); //머테리얼을 교체하는 함수
+
+	UFUNCTION(BlueprintImplementableEvent) //타임라인설정하는 함수, BP에서 구현
+	void StartDissolveTimeLine(UMaterialInstanceDynamic* DynamicMaterialInstance);
+
+	UFUNCTION(BlueprintImplementableEvent) //타임라인설정하는 함수, BP에서 구현
+	void StartWeaponDissolveTimeLine(UMaterialInstanceDynamic* DynamicMaterialInstance);
+	
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	TObjectPtr<UMaterialInstance> DissolveMaterialInstance; //녹을때 매쉬용 머테리얼
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance; //녹을때 무기용 머테리얼
 	
 private:
 	UPROPERTY(EditAnywhere, Category = "Attributes")
