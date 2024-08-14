@@ -33,7 +33,7 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 
 //대상 캐릭터위에 데미지 띄워주는 함수
 //RPC함수 : 서버에서 호출가능
-void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount, ACharacter* TargetCharacter)
+void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount, ACharacter* TargetCharacter, bool bBlockedHit, bool bCriticalHit)
 {
 	//대상캐릭터위치에 위젯생성함
 	if(IsValid(TargetCharacter) && DamageTextComponentClass)
@@ -43,7 +43,7 @@ void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount, 
 		//Text를 대상캐릭터의 루트에 붙이기
 		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(),FAttachmentTransformRules::KeepRelativeTransform);
 		DamageText->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform); //계속못따라다니도록 분리, 그냥 사라질숫자임
-		DamageText->SetDamageText(DamageAmount); //Text값 설정
+		DamageText->SetDamageText(DamageAmount, bBlockedHit,bCriticalHit); //Text값 설정
 	}
 }
 
