@@ -66,8 +66,16 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 
 		//GE_Damage에 사용할 Caller 설정
 		FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
-		const float ScaledDamage = Damage.GetValueAtLevel(20); //현레벨에 맞는 데미지를 얻어옴 (json으로 설정한그값) GetAbilityLevel();
-		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, GameplayTags.Damage, ScaledDamage);
+
+		for(auto& Pair : DamageTypes)
+		{
+			//레벨별 데미지 얻기
+			const float ScaledDamage = Pair.Value.GetValueAtLevel(GetAbilityLevel());
+			UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Pair.Key, ScaledDamage);
+		}
+		
+		// const float ScaledDamage = Damage.GetValueAtLevel(20); //현레벨에 맞는 데미지를 얻어옴 (json으로 설정한그값) GetAbilityLevel();
+		// UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, GameplayTags.Damage, ScaledDamage);
 		
 		Projectile->DamageEffectSpecHandle=SpecHandle; //set
 		
