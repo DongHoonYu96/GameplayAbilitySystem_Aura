@@ -3,6 +3,7 @@
 
 #include "AbilitySystem/ExceCalc/ExecCalc_Damage.h"
 #include "AbilitySystemComponent.h"
+#include "AuraAbilityTypes.h"
 #include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
@@ -84,6 +85,13 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 
 	//블록확률 25%
 	const bool bBlocked = FMath::RandRange(1,100) < TargetBlockChance;
+
+	FGameplayEffectContextHandle EffectContextHandle = Spec.GetContext();
+	UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
+	// FGameplayEffectContext* Context = EffectContextHandle.Get(); //ptr 반환
+	// FAuraGameplayEffectContext* AuraContext = static_cast<FAuraGameplayEffectContext*>(Context); //내가만든 setter 쓸려면 캐스트 필요
+	// AuraContext->SetIsBlockHit(bBlocked);
+	
 	if(bBlocked) Damage *= .5f;
 
 	//방어력 얻어오기
@@ -139,6 +147,9 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	
 	const float EffectiveCriticalHitChance = SourceCriticalHitChance-TargetCriticalHitResistance * CriticalHitResistanceCoefficient; //실제치명타확률 == 치적 - 치명타저항
 	const bool bCriticalHit = FMath::RandRange(1,100) < EffectiveCriticalHitChance; //랜덤
+
+	UAuraAbilitySystemLibrary::SetIsCriticalHit(EffectContextHandle, bCriticalHit);
+	
 	if(bCriticalHit) Damage = Damage * 2.f + SourceCriticalHitDamage; //치명타이면 데미지 2배 + 보너스데미지
 	/* end 치명타 계산*/
 	
