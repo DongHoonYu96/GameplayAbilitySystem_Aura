@@ -53,7 +53,10 @@ void AAuraProjectile::Destroyed()
 		UGameplayStatics::PlaySoundAtLocation(this,ImpactSound,GetActorLocation(),FRotator::ZeroRotator);
 
 		//오버랩되면 효과실행
-		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());	
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());
+
+		//클라에서 사운드 파괴된경우 예외처리
+		if(LoopingSoundComponent) LoopingSoundComponent->Stop();
 	}
 	Super::Destroyed();
 }
@@ -61,12 +64,22 @@ void AAuraProjectile::Destroyed()
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
                                       UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	//오버랩되면 소리재생
-	UGameplayStatics::PlaySoundAtLocation(this,ImpactSound,GetActorLocation(),FRotator::ZeroRotator);
+	//효과발생자 == 다른액터(클라)인경우 do nothing ()
+	if(DamageEffectSpecHandle.Data.IsValid() && DamageEffectSpecHandle.Data.Get()->GetContext().GetEffectCauser() == OtherActor) return;
 
-	//오버랩되면 효과실행
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());
-	LoopingSoundComponent->Stop(); // 적과오버랩되면 불 자체에서나는 루핑사운드 중지
+	if(!bHit)
+	{
+		//오버랩되면 소리재생
+		UGameplayStatics::PlaySoundAtLocation(this,ImpactSound,GetActorLocation(),FRotator::ZeroRotator);
+
+		//오버랩되면 효과실행
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());
+		//클라에서 사운드 파괴된경우 예외처리
+		if(LoopingSoundComponent) LoopingSoundComponent->Stop();
+		// LoopingSoundComponent->Stop(); // 적과오버랩되면 불 자체에서나는 루핑사운드 중지
+	}
+	
+	
 
 	//서버에있는경우 
 	if(HasAuthority())

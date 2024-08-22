@@ -31,7 +31,7 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 	{
 		const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
 		FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation(); //방향벡터의 회전각 구하기
-		Rotation.Pitch=0.f; // 지면과 평행하게 움직이도록
+		// Rotation.Pitch=0.f; // 지면과 평행하게 움직이도록
 		
 		FTransform SpawnTransform; //발사체생성할 위치 == 지팡이끝 / but, 캐릭터에의존하면안됨, 전투인터페이스에서 소켓위치를 반환받으면 좋겠음.
 		SpawnTransform.SetLocation(SocketLocation); 
