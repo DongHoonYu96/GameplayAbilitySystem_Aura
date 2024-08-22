@@ -21,6 +21,12 @@ struct AuraDamageStatics
 	DECLARE_ATTRIBUTE_CAPTUREDEF(CriticalHitResistance);
 	DECLARE_ATTRIBUTE_CAPTUREDEF(CriticalHitDamage);
 
+	DECLARE_ATTRIBUTE_CAPTUREDEF(FireResistance);
+	DECLARE_ATTRIBUTE_CAPTUREDEF(LightningResistance);
+	DECLARE_ATTRIBUTE_CAPTUREDEF(ArcaneResistance);
+	DECLARE_ATTRIBUTE_CAPTUREDEF(PhysicalResistance);
+
+	TMap<FGameplayTag,FGameplayEffectAttributeCaptureDefinition> TagsToCaptureDefs; //tag와 속성연결
 	
 	AuraDamageStatics()
 	{
@@ -30,6 +36,24 @@ struct AuraDamageStatics
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, CriticalHitChance, Source, false); //아머라는 속성을 캡쳐하겠다. from 공격자(아우라)임에 주의
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, CriticalHitResistance, Target, false); //아머라는 속성을 캡쳐하겠다. from 적(고블린)임에 주의
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, CriticalHitDamage, Source, false); //아머라는 속성을 캡쳐하겠다. from 공격자(아우라)임에 주의
+
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, FireResistance, Target, false); //아머라는 속성을 캡쳐하겠다. from 공격자(아우라)임에 주의
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, LightningResistance, Target, false); //아머라는 속성을 캡쳐하겠다. from 공격자(아우라)임에 주의
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, ArcaneResistance, Target, false); //아머라는 속성을 캡쳐하겠다. from 공격자(아우라)임에 주의
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, PhysicalResistance, Target, false); //아머라는 속성을 캡쳐하겠다. from 공격자(아우라)임에 주의
+
+		const FAuraGameplayTags& Tags = FAuraGameplayTags::Get();
+		TagsToCaptureDefs.Add(Tags.Attributes_Secondary_Armor, ArmorDef);
+		TagsToCaptureDefs.Add(Tags.Attributes_Secondary_BlockChance, BlockChanceDef);
+		TagsToCaptureDefs.Add(Tags.Attributes_Secondary_ArmorPenetration, ArmorPenetrationDef);
+		TagsToCaptureDefs.Add(Tags.Attributes_Secondary_CriticalHitChance, CriticalHitChanceDef);
+		TagsToCaptureDefs.Add(Tags.Attributes_Secondary_CriticalHitResistance, CriticalHitResistanceDef);
+		TagsToCaptureDefs.Add(Tags.Attributes_Secondary_CriticalHitDamage, CriticalHitDamageDef);
+
+		TagsToCaptureDefs.Add(Tags.Attributes_Resistance_Arcane, ArcaneResistanceDef);
+		TagsToCaptureDefs.Add(Tags.Attributes_Resistance_Fire, FireResistanceDef);
+		TagsToCaptureDefs.Add(Tags.Attributes_Resistance_Lightning, LightningResistanceDef);
+		TagsToCaptureDefs.Add(Tags.Attributes_Resistance_Physical, PhysicalResistanceDef);
 	}
 	
 };
@@ -49,6 +73,12 @@ UExecCalc_Damage::UExecCalc_Damage()
 	RelevantAttributesToCapture.Add(DamageStatics().CriticalHitChanceDef); //캡쳐속성 배열에추가
 	RelevantAttributesToCapture.Add(DamageStatics().CriticalHitResistanceDef); //캡쳐속성 배열에추가
 	RelevantAttributesToCapture.Add(DamageStatics().CriticalHitDamageDef); //캡쳐속성 배열에추가
+
+	RelevantAttributesToCapture.Add(DamageStatics().FireResistanceDef); //캡쳐속성 배열에추가
+	RelevantAttributesToCapture.Add(DamageStatics().LightningResistanceDef); //캡쳐속성 배열에추가
+	RelevantAttributesToCapture.Add(DamageStatics().ArcaneResistanceDef); //캡쳐속성 배열에추가
+	RelevantAttributesToCapture.Add(DamageStatics().PhysicalResistanceDef); //캡쳐속성 배열에추가
+
 }
 
 void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
@@ -74,12 +104,37 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	EvaluationParameters.TargetTags = TargetTags;
 
 	// Get Damage Set by Caller Magnitude
+	// 모든 데미지 타입에 대해 데미지 얻어오기
 	float Damage = 0.f;
-	for(FGameplayTag DamageTypeTag : FAuraGameplayTags::Get().DamageTypes)
+	for (const TTuple<FGameplayTag, FGameplayTag>& Pair  : FAuraGameplayTags::Get().DamageTypesToResistances)
 	{
-		const float DamageTypeValue = Spec.GetSetByCallerMagnitude(DamageTypeTag);
+		//map < 데미지타입, 저항속성>
+		const FGameplayTag DamageType = Pair.Key;
+		const FGameplayTag ResistanceTag = Pair.Value;
+
+		//저항속성이 TagsToCaptureDefs맵에 없는경우 예외처리, 에러시메시지
+		checkf(AuraDamageStatics().TagsToCaptureDefs.Contains(ResistanceTag), TEXT("TagsToCaptureDefs doesn`t contain Tag: [%s] in ExceCalc_Damage"),
+			*ResistanceTag.ToString());
+		//저항태그 에 대항하는 데미지캡쳐
+		const FGameplayEffectAttributeCaptureDefinition CaptureDef = AuraDamageStatics().TagsToCaptureDefs[ResistanceTag];
+
+		float DamageTypeValue = Spec.GetSetByCallerMagnitude(DamageType);
+		
+		float Resistance = 0.f;
+		//캡쳐된 속성값 계산
+		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(CaptureDef, EvaluationParameters, Resistance);
+		//감소율은 0~100으로 제한
+		Resistance = FMath::Clamp(Resistance,0.f,100.f);
+		
+		DamageTypeValue *= (100.f - Resistance) / 100.f; //저항%만큼 데미지 감소시키기
+
 		Damage += DamageTypeValue;
 	}
+	// for(FGameplayTag DamageTypeTag : FAuraGameplayTags::Get().DamageTypes)
+	// {
+	// 	const float DamageTypeValue = Spec.GetSetByCallerMagnitude(DamageTypeTag);
+	// 	Damage += DamageTypeValue;
+	// }
 
 	//Capture Blockchacne on target , 블록인지 결정
 	//블록이면, 데미지 절반으로
